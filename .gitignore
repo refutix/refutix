@@ -72,5 +72,5 @@ coverage
 *.sln
 *.sw?
 
-# paimon-web-ui-new
-paimon-web-ui-new/auto-imports.d.ts
+# paimon-web-ui
+paimon-web-ui/auto-imports.d.ts
