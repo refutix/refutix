@@ -19,6 +19,7 @@ export default {
   playground: 'Playground',
   metadata: 'MetaData',
   cdc_ingestion: 'Data Ingestion',
+  job_manager: 'Job Manager',
   system: 'System',
   light: 'Light',
   dark: 'Dark',

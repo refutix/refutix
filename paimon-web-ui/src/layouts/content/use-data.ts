@@ -59,6 +59,11 @@ export const useData = () => {
       icon: renderIcon(FileSyncOutlined)
     },
     {
+      label: () => renderLabel(t('layout.job_manager'), 'job'),
+      key: 'job_manager',
+      icon: renderIcon(FileSyncOutlined)
+    },
+    {
       label: () => renderLabel(t('layout.system'), 'system'),
       key: 'system',
       icon: renderIcon(SettingsOutline),
