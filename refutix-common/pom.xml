@@ -23,13 +23,13 @@ under the License.
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.apache.paimon</groupId>
-        <artifactId>paimon-webui</artifactId>
+        <groupId>org.refutix</groupId>
+        <artifactId>refutix</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>paimon-web-common</artifactId>
-    <name>Paimon : Web : Common</name>
+    <artifactId>refutix-common</artifactId>
+    <name>Refutix : Common</name>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

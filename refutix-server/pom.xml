@@ -22,13 +22,13 @@ under the License.
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.apache.paimon</groupId>
-        <artifactId>paimon-webui</artifactId>
+        <groupId>org.refutix</groupId>
+        <artifactId>refutix</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>paimon-web-server</artifactId>
-    <name>Paimon : Web : Server</name>
+    <artifactId>refutix-server</artifactId>
+    <name>Refutix : Server</name>
 
     <description>
         Paimon Web Server is a server for the [Apache Paimon](https://paimon.apache.org/) project.
@@ -40,14 +40,14 @@ under the License.
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.paimon</groupId>
-            <artifactId>paimon-web-common</artifactId>
+            <groupId>org.refutix</groupId>
+            <artifactId>refutix-common</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.paimon</groupId>
-            <artifactId>paimon-web-api</artifactId>
+            <groupId>org.refutix</groupId>
+            <artifactId>refutix-api</artifactId>
             <version>${project.version}</version>
         </dependency>
 

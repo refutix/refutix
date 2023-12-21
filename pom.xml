@@ -23,10 +23,10 @@ under the License.
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
-        <module>paimon-web-server</module>
-        <module>paimon-web-common</module>
-        <module>paimon-web-gateway</module>
-        <module>paimon-web-api</module>
+        <module>refutix-server</module>
+        <module>refutix-common</module>
+        <module>refutix-gateway</module>
+        <module>refutix-api</module>
     </modules>
 
     <parent>
@@ -35,9 +35,9 @@ under the License.
         <version>23</version>
     </parent>
 
-    <groupId>org.apache.paimon</groupId>
-    <artifactId>paimon-webui</artifactId>
-    <name>Paimon : Web : Root</name>
+    <groupId>org.refutix</groupId>
+    <artifactId>refutix</artifactId>
+    <name>Refutix : Root</name>
 
     <version>0.1-SNAPSHOT</version>
 
