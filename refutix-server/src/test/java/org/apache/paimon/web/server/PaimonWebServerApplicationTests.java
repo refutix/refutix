@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.paimon.web.server;
+package org.refutix.refutix.web.server;
 
 import org.springframework.boot.test.context.SpringBootTest;
 

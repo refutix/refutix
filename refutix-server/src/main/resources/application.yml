@@ -13,14 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Paimon Web Service Port
+# Refutix Service Port
 server:
   port: 10088
 
 spring:
   # Paimon Web Service Name
   application:
-    name: Paimon-Web-UI
+    name: refutix
   profiles:
     active: dev-mysql
   messages:
