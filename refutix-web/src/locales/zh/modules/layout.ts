@@ -16,8 +16,8 @@ specific language governing permissions and limitations
 under the License. */
 
 export default {
-  playground: '数据开发',
-  metadata: '数据查询',
+  playground: '工作台',
+  metadata: '元数据管理',
   cdc_ingestion: '数据集成',
   job_manager: '作业管理',
   system: '系统管理',

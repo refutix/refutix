@@ -39,7 +39,7 @@ export default defineComponent({
             <div class={styles.logo}>
               <img src={logoImage} alt='logo-image'/>
             </div>
-            <div>Apache Paimon</div>
+            <div class={styles['logo-text']}>Refutix</div>
           </n-space>
         </div>
         <div class={styles['menu-bar']}>
