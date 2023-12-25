@@ -18,8 +18,8 @@
 
 package org.refutix.refutix.web.server.service.impl;
 
-import org.refutix.refutix.data.InternalRow;
-import org.refutix.refutix.reader.RecordReader;
+import org.apache.paimon.data.InternalRow;
+import org.apache.paimon.reader.RecordReader;
 import org.apache.paimon.table.Table;
 import org.apache.paimon.table.source.ReadBuilder;
 import org.refutix.refutix.web.api.catalog.PaimonService;
