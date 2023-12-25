@@ -18,6 +18,10 @@
 
 package org.refutix.refutix.web.server.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.refutix.refutix.web.api.catalog.PaimonService;
 import org.refutix.refutix.web.server.data.dto.DatabaseDTO;
 import org.refutix.refutix.web.server.data.model.CatalogInfo;
@@ -28,11 +32,6 @@ import org.refutix.refutix.web.server.mapper.DatabaseMapper;
 import org.refutix.refutix.web.server.service.CatalogService;
 import org.refutix.refutix.web.server.service.DatabaseService;
 import org.refutix.refutix.web.server.util.PaimonServiceUtils;
-
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;

@@ -18,6 +18,8 @@
 
 package org.refutix.refutix.web.server.controller;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
+import cn.dev33.satoken.stp.StpUtil;
 import org.refutix.refutix.web.server.constant.Constants;
 import org.refutix.refutix.web.server.data.model.SysMenu;
 import org.refutix.refutix.web.server.data.result.R;
@@ -27,9 +29,6 @@ import org.refutix.refutix.web.server.data.vo.RoleMenuTreeselectVO;
 import org.refutix.refutix.web.server.data.vo.RouterVO;
 import org.refutix.refutix.web.server.service.SysMenuService;
 import org.refutix.refutix.web.server.util.StringUtils;
-
-import cn.dev33.satoken.annotation.SaCheckPermission;
-import cn.dev33.satoken.stp.StpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;

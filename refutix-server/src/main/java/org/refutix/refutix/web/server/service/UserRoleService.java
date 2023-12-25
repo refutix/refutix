@@ -18,10 +18,9 @@
 
 package org.refutix.refutix.web.server.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import org.refutix.refutix.web.server.data.model.User;
 import org.refutix.refutix.web.server.data.model.UserRole;
-
-import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 

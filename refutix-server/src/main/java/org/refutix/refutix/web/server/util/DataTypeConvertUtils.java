@@ -116,7 +116,8 @@ public class DataTypeConvertUtils {
             return new RefutixDataType("CHAR", charType.isNullable(), charType.getLength(), 0);
         } else if (dataType instanceof BinaryType) {
             BinaryType binaryType = (BinaryType) dataType;
-            return new RefutixDataType("BINARY", binaryType.isNullable(), binaryType.getLength(), 0);
+            return new RefutixDataType(
+                    "BINARY", binaryType.isNullable(), binaryType.getLength(), 0);
         } else if (dataType instanceof VarBinaryType) {
             VarBinaryType varBinaryType = (VarBinaryType) dataType;
             if (varBinaryType.getLength() == Integer.MAX_VALUE) {

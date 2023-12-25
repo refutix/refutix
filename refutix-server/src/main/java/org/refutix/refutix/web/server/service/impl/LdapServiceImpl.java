@@ -18,12 +18,11 @@
 
 package org.refutix.refutix.web.server.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.refutix.refutix.web.server.data.enums.UserType;
 import org.refutix.refutix.web.server.data.model.User;
 import org.refutix.refutix.web.server.service.LdapService;
-
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.ldap.core.AttributesMapper;

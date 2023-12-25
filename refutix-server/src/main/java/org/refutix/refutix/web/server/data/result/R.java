@@ -18,11 +18,10 @@
 
 package org.refutix.refutix.web.server.data.result;
 
-import org.refutix.refutix.web.server.data.result.enums.Status;
-import org.refutix.refutix.web.server.util.MessageUtils;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.refutix.refutix.web.server.data.result.enums.Status;
+import org.refutix.refutix.web.server.util.MessageUtils;
 
 /** result. */
 @Data

@@ -18,14 +18,13 @@
 
 package org.refutix.refutix.web.server.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.refutix.refutix.web.server.data.dto.TableDTO;
 import org.refutix.refutix.web.server.data.model.AlterTableRequest;
 import org.refutix.refutix.web.server.data.result.R;
 import org.refutix.refutix.web.server.data.result.enums.Status;
 import org.refutix.refutix.web.server.data.vo.TableVO;
 import org.refutix.refutix.web.server.service.TableService;
-
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

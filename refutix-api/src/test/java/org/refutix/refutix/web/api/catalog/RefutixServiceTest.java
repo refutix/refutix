@@ -21,16 +21,16 @@ package org.refutix.refutix.web.api.catalog;
 import org.apache.paimon.table.Table;
 import org.apache.paimon.types.DataType;
 import org.apache.paimon.types.DataTypes;
-import org.refutix.refutix.web.api.exception.DatabaseException;
-import org.refutix.refutix.web.api.exception.TableException;
-import org.refutix.refutix.web.api.table.TableChange;
-import org.refutix.refutix.web.api.table.metadata.ColumnMetadata;
-import org.refutix.refutix.web.api.table.metadata.TableMetadata;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.refutix.refutix.web.api.exception.DatabaseException;
+import org.refutix.refutix.web.api.exception.TableException;
+import org.refutix.refutix.web.api.table.TableChange;
+import org.refutix.refutix.web.api.table.metadata.ColumnMetadata;
+import org.refutix.refutix.web.api.table.metadata.TableMetadata;
 
 import java.nio.file.Path;
 import java.util.ArrayList;

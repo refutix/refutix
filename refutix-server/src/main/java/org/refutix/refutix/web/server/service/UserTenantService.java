@@ -18,9 +18,8 @@
 
 package org.refutix.refutix.web.server.service;
 
-import org.refutix.refutix.web.server.data.model.UserTenant;
-
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.refutix.refutix.web.server.data.model.UserTenant;
 
 /** Tenant Service. */
 public interface UserTenantService extends IService<UserTenant> {}

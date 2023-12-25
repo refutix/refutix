@@ -18,11 +18,10 @@
 
 package org.refutix.refutix.web.server.data.model;
 
-import org.refutix.refutix.web.server.constant.Constants;
-
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.refutix.refutix.web.server.constant.Constants;
 
 /** user table model. */
 @Data

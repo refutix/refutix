@@ -18,11 +18,10 @@
 
 package org.refutix.refutix.web.server.mapper;
 
-import org.refutix.refutix.web.server.data.model.UserRole;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.refutix.refutix.web.server.data.model.UserRole;
 
 import java.util.List;
 

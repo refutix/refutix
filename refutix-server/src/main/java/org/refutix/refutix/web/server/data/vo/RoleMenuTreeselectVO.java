@@ -18,10 +18,9 @@
 
 package org.refutix.refutix.web.server.data.vo;
 
-import org.refutix.refutix.web.server.data.tree.TreeSelect;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import org.refutix.refutix.web.server.data.tree.TreeSelect;
 
 import java.util.List;
 

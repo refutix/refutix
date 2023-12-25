@@ -18,13 +18,12 @@
 
 package org.refutix.refutix.web.server.data.vo;
 
+import cn.dev33.satoken.stp.SaTokenInfo;
+import lombok.Data;
 import org.refutix.refutix.web.server.data.model.SysMenu;
 import org.refutix.refutix.web.server.data.model.SysRole;
 import org.refutix.refutix.web.server.data.model.Tenant;
 import org.refutix.refutix.web.server.data.model.User;
-
-import cn.dev33.satoken.stp.SaTokenInfo;
-import lombok.Data;
 
 import java.util.List;
 

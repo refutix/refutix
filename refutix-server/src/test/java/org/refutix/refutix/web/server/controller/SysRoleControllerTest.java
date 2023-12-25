@@ -18,16 +18,15 @@
 
 package org.refutix.refutix.web.server.controller;
 
-import org.refutix.refutix.web.server.data.model.SysRole;
-import org.refutix.refutix.web.server.data.result.PageR;
-import org.refutix.refutix.web.server.data.result.R;
-import org.refutix.refutix.web.server.util.ObjectMapperUtils;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.refutix.refutix.web.server.data.model.SysRole;
+import org.refutix.refutix.web.server.data.result.PageR;
+import org.refutix.refutix.web.server.data.result.R;
+import org.refutix.refutix.web.server.util.ObjectMapperUtils;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;

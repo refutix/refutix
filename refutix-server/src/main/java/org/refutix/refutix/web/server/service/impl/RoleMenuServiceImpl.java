@@ -18,11 +18,10 @@
 
 package org.refutix.refutix.web.server.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.refutix.refutix.web.server.data.model.RoleMenu;
 import org.refutix.refutix.web.server.mapper.RoleMenuMapper;
 import org.refutix.refutix.web.server.service.RoleMenuService;
-
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /** RoleMenuServiceImpl. */

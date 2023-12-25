@@ -18,6 +18,9 @@
 
 package org.refutix.refutix.web.server.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 import org.refutix.refutix.web.api.catalog.PaimonService;
 import org.refutix.refutix.web.api.table.TableChange;
 import org.refutix.refutix.web.api.table.metadata.ColumnMetadata;
@@ -32,12 +35,8 @@ import org.refutix.refutix.web.server.data.vo.TableVO;
 import org.refutix.refutix.web.server.service.CatalogService;
 import org.refutix.refutix.web.server.service.TableService;
 import org.refutix.refutix.web.server.util.DataTypeConvertUtils;
-import org.refutix.refutix.web.server.util.RefutixDataType;
 import org.refutix.refutix.web.server.util.PaimonServiceUtils;
-
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.CollectionUtils;
+import org.refutix.refutix.web.server.util.RefutixDataType;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

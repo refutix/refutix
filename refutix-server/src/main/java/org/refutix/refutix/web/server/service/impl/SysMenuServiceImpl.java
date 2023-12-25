@@ -18,6 +18,8 @@
 
 package org.refutix.refutix.web.server.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.refutix.refutix.web.server.constant.Constants;
 import org.refutix.refutix.web.server.data.enums.MenuType;
 import org.refutix.refutix.web.server.data.model.SysMenu;
@@ -30,9 +32,6 @@ import org.refutix.refutix.web.server.mapper.SysMenuMapper;
 import org.refutix.refutix.web.server.mapper.SysRoleMapper;
 import org.refutix.refutix.web.server.service.SysMenuService;
 import org.refutix.refutix.web.server.util.StringUtils;
-
-import cn.dev33.satoken.stp.StpUtil;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;

@@ -21,10 +21,10 @@ package org.refutix.refutix.web.api.catalog;
 import org.apache.paimon.catalog.CatalogContext;
 import org.apache.paimon.catalog.CatalogFactory;
 import org.apache.paimon.options.Options;
-import org.refutix.refutix.web.api.common.CatalogProperties;
-import org.refutix.refutix.web.api.common.MetastoreType;
 
 import org.apache.commons.lang3.StringUtils;
+import org.refutix.refutix.web.api.common.CatalogProperties;
+import org.refutix.refutix.web.api.common.MetastoreType;
 
 import java.util.HashMap;
 import java.util.Map;

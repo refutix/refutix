@@ -18,6 +18,8 @@
 
 package org.refutix.refutix.web.server.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.commons.lang3.StringUtils;
 import org.refutix.refutix.web.api.catalog.PaimonServiceFactory;
 import org.refutix.refutix.web.server.data.dto.CatalogDTO;
 import org.refutix.refutix.web.server.data.enums.CatalogMode;
@@ -26,9 +28,6 @@ import org.refutix.refutix.web.server.data.result.R;
 import org.refutix.refutix.web.server.data.result.enums.Status;
 import org.refutix.refutix.web.server.mapper.CatalogMapper;
 import org.refutix.refutix.web.server.service.CatalogService;
-
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;

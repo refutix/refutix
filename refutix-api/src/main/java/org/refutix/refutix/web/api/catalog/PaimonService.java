@@ -25,15 +25,15 @@ import org.apache.paimon.schema.SchemaChange;
 import org.apache.paimon.schema.SchemaManager;
 import org.apache.paimon.table.Table;
 import org.apache.paimon.types.DataType;
+
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableList;
 import org.refutix.refutix.web.api.exception.ColumnException;
 import org.refutix.refutix.web.api.exception.DatabaseException;
 import org.refutix.refutix.web.api.exception.TableException;
 import org.refutix.refutix.web.api.table.TableChange;
 import org.refutix.refutix.web.api.table.metadata.ColumnMetadata;
 import org.refutix.refutix.web.api.table.metadata.TableMetadata;
-
-import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
 import java.util.List;

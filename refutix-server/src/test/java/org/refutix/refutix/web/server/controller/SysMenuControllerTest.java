@@ -18,14 +18,13 @@
 
 package org.refutix.refutix.web.server.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import org.junit.jupiter.api.Test;
 import org.refutix.refutix.web.server.data.model.SysMenu;
 import org.refutix.refutix.web.server.data.result.R;
 import org.refutix.refutix.web.server.data.tree.TreeSelect;
 import org.refutix.refutix.web.server.data.vo.RoleMenuTreeselectVO;
 import org.refutix.refutix.web.server.util.ObjectMapperUtils;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;

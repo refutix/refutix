@@ -18,8 +18,6 @@
 
 package org.refutix.refutix.web.server.configrue;
 
-import org.refutix.refutix.web.server.context.TenantContextHolder;
-
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
@@ -29,6 +27,7 @@ import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.LongValue;
 import net.sf.jsqlparser.expression.NullValue;
 import org.mybatis.spring.annotation.MapperScan;
+import org.refutix.refutix.web.server.context.TenantContextHolder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

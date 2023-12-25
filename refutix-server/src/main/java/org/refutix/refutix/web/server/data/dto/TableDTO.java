@@ -18,12 +18,11 @@
 
 package org.refutix.refutix.web.server.data.dto;
 
-import org.refutix.refutix.web.server.data.model.TableColumn;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.refutix.refutix.web.server.data.model.TableColumn;
 
 import java.util.List;
 import java.util.Map;

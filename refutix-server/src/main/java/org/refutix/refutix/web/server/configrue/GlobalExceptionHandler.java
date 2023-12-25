@@ -18,14 +18,13 @@
 
 package org.refutix.refutix.web.server.configrue;
 
-import org.refutix.refutix.web.server.data.result.R;
-import org.refutix.refutix.web.server.data.result.enums.Status;
-import org.refutix.refutix.web.server.data.result.exception.BaseException;
-
 import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.exception.NotPermissionException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.refutix.refutix.web.server.data.result.R;
+import org.refutix.refutix.web.server.data.result.enums.Status;
+import org.refutix.refutix.web.server.data.result.exception.BaseException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;

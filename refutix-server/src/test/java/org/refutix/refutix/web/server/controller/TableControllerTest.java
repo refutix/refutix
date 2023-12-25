@@ -18,17 +18,16 @@
 
 package org.refutix.refutix.web.server.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import org.junit.jupiter.api.Test;
 import org.refutix.refutix.web.server.data.dto.TableDTO;
 import org.refutix.refutix.web.server.data.model.AlterTableRequest;
 import org.refutix.refutix.web.server.data.model.TableColumn;
 import org.refutix.refutix.web.server.data.result.R;
 import org.refutix.refutix.web.server.util.ObjectMapperUtils;
 import org.refutix.refutix.web.server.util.RefutixDataType;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -58,7 +57,8 @@ public class TableControllerTest extends ControllerTestBase {
     public void testCreateTable() throws Exception {
         List<TableColumn> tableColumns = new ArrayList<>();
         TableColumn id =
-                new TableColumn("id", RefutixDataType.builder().type("INT").build(), "", false, "0");
+                new TableColumn(
+                        "id", RefutixDataType.builder().type("INT").build(), "", false, "0");
         TableColumn name =
                 new TableColumn(
                         "name", RefutixDataType.builder().type("STRING").build(), "", false, "0");
@@ -172,7 +172,8 @@ public class TableControllerTest extends ControllerTestBase {
     @Test
     public void testAlterTable() throws Exception {
         TableColumn oldColumn =
-                new TableColumn("id", RefutixDataType.builder().type("INT").build(), "", false, "0");
+                new TableColumn(
+                        "id", RefutixDataType.builder().type("INT").build(), "", false, "0");
 
         TableColumn newColumn =
                 new TableColumn(
@@ -260,7 +261,8 @@ public class TableControllerTest extends ControllerTestBase {
     public void testRenameTable() throws Exception {
         List<TableColumn> tableColumns = new ArrayList<>();
         TableColumn id =
-                new TableColumn("id", RefutixDataType.builder().type("INT").build(), "", false, "0");
+                new TableColumn(
+                        "id", RefutixDataType.builder().type("INT").build(), "", false, "0");
         TableColumn name =
                 new TableColumn(
                         "name", RefutixDataType.builder().type("STRING").build(), "", false, "0");

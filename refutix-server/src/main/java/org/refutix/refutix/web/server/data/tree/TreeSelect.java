@@ -18,9 +18,8 @@
 
 package org.refutix.refutix.web.server.data.tree;
 
-import org.refutix.refutix.web.server.data.model.SysMenu;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.refutix.refutix.web.server.data.model.SysMenu;
 
 import java.io.Serializable;
 import java.util.List;

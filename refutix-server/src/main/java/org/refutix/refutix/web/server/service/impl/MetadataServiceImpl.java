@@ -22,6 +22,11 @@ import org.apache.paimon.data.InternalRow;
 import org.apache.paimon.reader.RecordReader;
 import org.apache.paimon.table.Table;
 import org.apache.paimon.table.source.ReadBuilder;
+
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import lombok.extern.slf4j.Slf4j;
 import org.refutix.refutix.web.api.catalog.PaimonService;
 import org.refutix.refutix.web.server.constant.MetadataConstant;
 import org.refutix.refutix.web.server.data.dto.MetadataDTO;
@@ -35,11 +40,6 @@ import org.refutix.refutix.web.server.data.vo.SnapshotVO;
 import org.refutix.refutix.web.server.service.CatalogService;
 import org.refutix.refutix.web.server.service.MetadataService;
 import org.refutix.refutix.web.server.util.PaimonServiceUtils;
-
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

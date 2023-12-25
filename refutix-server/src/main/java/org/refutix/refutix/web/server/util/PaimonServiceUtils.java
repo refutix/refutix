@@ -18,12 +18,11 @@
 
 package org.refutix.refutix.web.server.util;
 
+import org.apache.commons.lang3.StringUtils;
 import org.refutix.refutix.web.api.catalog.PaimonService;
 import org.refutix.refutix.web.api.catalog.PaimonServiceFactory;
 import org.refutix.refutix.web.server.data.enums.CatalogMode;
 import org.refutix.refutix.web.server.data.model.CatalogInfo;
-
-import org.apache.commons.lang3.StringUtils;
 
 /** Paimon Service util. */
 public class PaimonServiceUtils {

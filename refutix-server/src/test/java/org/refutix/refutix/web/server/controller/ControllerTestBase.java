@@ -18,6 +18,11 @@
 
 package org.refutix.refutix.web.server.controller;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.io.TempDir;
 import org.refutix.refutix.web.server.data.dto.CatalogDTO;
 import org.refutix.refutix.web.server.data.dto.DatabaseDTO;
 import org.refutix.refutix.web.server.data.dto.LoginDTO;
@@ -27,12 +32,6 @@ import org.refutix.refutix.web.server.data.result.R;
 import org.refutix.refutix.web.server.util.ObjectMapperUtils;
 import org.refutix.refutix.web.server.util.RefutixDataType;
 import org.refutix.refutix.web.server.util.StringUtils;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -138,7 +137,8 @@ public class ControllerTestBase {
         // create default table
         List<TableColumn> tableColumns = new ArrayList<>();
         TableColumn id =
-                new TableColumn("id", RefutixDataType.builder().type("INT").build(), "", false, "0");
+                new TableColumn(
+                        "id", RefutixDataType.builder().type("INT").build(), "", false, "0");
         TableColumn name =
                 new TableColumn(
                         "name", RefutixDataType.builder().type("STRING").build(), "", false, "0");

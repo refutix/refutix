@@ -18,12 +18,11 @@
 
 package org.refutix.refutix.web.server.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import org.refutix.refutix.web.server.data.dto.LoginDTO;
 import org.refutix.refutix.web.server.data.model.User;
 import org.refutix.refutix.web.server.data.result.exception.BaseException;
 import org.refutix.refutix.web.server.data.vo.UserInfoVO;
-
-import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 

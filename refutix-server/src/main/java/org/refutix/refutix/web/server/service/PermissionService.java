@@ -18,10 +18,9 @@
 
 package org.refutix.refutix.web.server.service;
 
-import org.refutix.refutix.web.server.constant.Constants;
-
 import cn.dev33.satoken.stp.StpInterface;
 import com.google.common.base.Preconditions;
+import org.refutix.refutix.web.server.constant.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;

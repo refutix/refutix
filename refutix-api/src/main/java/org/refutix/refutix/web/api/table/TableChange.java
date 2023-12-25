@@ -19,6 +19,7 @@
 package org.refutix.refutix.web.api.table;
 
 import org.apache.paimon.types.DataType;
+
 import org.refutix.refutix.web.api.table.metadata.ColumnMetadata;
 
 import javax.annotation.Nullable;

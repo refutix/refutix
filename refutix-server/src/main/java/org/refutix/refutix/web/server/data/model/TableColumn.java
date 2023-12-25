@@ -18,12 +18,11 @@
 
 package org.refutix.refutix.web.server.data.model;
 
-import org.refutix.refutix.web.server.util.RefutixDataType;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.refutix.refutix.web.server.util.RefutixDataType;
 
 import javax.annotation.Nullable;
 

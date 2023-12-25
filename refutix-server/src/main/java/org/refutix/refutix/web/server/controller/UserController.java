@@ -18,12 +18,11 @@
 
 package org.refutix.refutix.web.server.controller;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
+import lombok.extern.slf4j.Slf4j;
 import org.refutix.refutix.web.server.data.model.User;
 import org.refutix.refutix.web.server.data.result.R;
 import org.refutix.refutix.web.server.service.UserService;
-
-import cn.dev33.satoken.annotation.SaCheckPermission;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

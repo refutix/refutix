@@ -18,11 +18,10 @@
 
 package org.refutix.refutix.web.server.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.refutix.refutix.web.server.data.model.UserTenant;
 import org.refutix.refutix.web.server.mapper.UserTenantMapper;
 import org.refutix.refutix.web.server.service.UserTenantService;
-
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /** UserTenantServiceImpl. */
