@@ -20,9 +20,9 @@ under the License.
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.apache.paimon.web.server.mapper.UserMapper">
+<mapper namespace="org.refutix.refutix.web.server.mapper.UserMapper">
 
-    <resultMap type="org.apache.paimon.web.server.data.model.User" id="SysUserResult">
+    <resultMap type="org.refutix.refutix.web.server.data.model.User" id="SysUserResult">
         <id     property="id"       column="id"      />
         <result property="username"     column="user_name"    />
         <result property="nickname"     column="nick_name"    />
@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <collection  property="roles"   javaType="java.util.List"           resultMap="RoleResult" />
     </resultMap>
 	
-    <resultMap id="RoleResult" type="org.apache.paimon.web.server.data.model.SysRole">
+    <resultMap id="RoleResult" type="org.refutix.refutix.web.server.data.model.SysRole">
         <id     property="id"       column="role_id"        />
         <result property="roleName"     column="role_name"      />
         <result property="roleKey"      column="role_key"       />
@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    left join sys_role r on r.id = urole.role_id
     </sql>
     
-    <select id="selectUserList" parameterType="org.apache.paimon.web.server.data.model.User" resultMap="SysUserResult">
+    <select id="selectUserList" parameterType="org.refutix.refutix.web.server.data.model.User" resultMap="SysUserResult">
 		select u.id, u.nickname, u.username, u.email, u.url, u.mobile, u.enabled, u.is_delete, u.create_time from user u
 		where u.is_delete = '0'
 		<if test="id != null and id != 0">
@@ -76,7 +76,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	
-	<select id="selectAllocatedList" parameterType="org.apache.paimon.web.server.data.model.User" resultMap="SysUserResult">
+	<select id="selectAllocatedList" parameterType="org.refutix.refutix.web.server.data.model.User" resultMap="SysUserResult">
 	    select distinct u.id, u.username, u.nickname, u.email, u.mobile, u.enabled, u.create_time
 	    from user u
 			 left join user_role urole on u.id = urole.user_id
@@ -90,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	
-	<select id="selectUnallocatedList" parameterType="org.apache.paimon.web.server.data.model.User" resultMap="SysUserResult">
+	<select id="selectUnallocatedList" parameterType="org.refutix.refutix.web.server.data.model.User" resultMap="SysUserResult">
 	    select distinct u.id u.username, u.nickname, u.email, u.mobile, u.enabled, u.create_time
 	    from user u
 			 left join user_role urole on u.id = urole.user_id

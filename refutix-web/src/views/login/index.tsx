@@ -51,7 +51,7 @@ export default defineComponent({
           <div class={styles['form-container']}>
             <n-space align='center' justify='center'>
               <img class={styles['logo']} src={logoImage} alt='logo-image'/>
-              <h1>Apache Paimon</h1>
+              <h1>Refutix</h1>
             </n-space>
             <n-form
               ref='loginForm'

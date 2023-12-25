@@ -30,9 +30,6 @@ under the License.
     <artifactId>refutix-server</artifactId>
     <name>Refutix : Server</name>
 
-    <description>
-        Paimon Web Server is a server for the [Apache Paimon](https://paimon.apache.org/) project.
-    </description>
 
     <properties>
         <hadoop.version>2.8.5</hadoop.version>
