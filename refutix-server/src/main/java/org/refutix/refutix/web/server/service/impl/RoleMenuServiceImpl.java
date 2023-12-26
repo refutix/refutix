@@ -19,12 +19,12 @@
 package org.refutix.refutix.web.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.refutix.refutix.web.server.data.model.RoleMenu;
+import org.refutix.refutix.web.server.data.model.RoleMenuRel;
 import org.refutix.refutix.web.server.mapper.RoleMenuMapper;
 import org.refutix.refutix.web.server.service.RoleMenuService;
 import org.springframework.stereotype.Service;
 
 /** RoleMenuServiceImpl. */
 @Service
-public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenu>
+public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenuRel>
         implements RoleMenuService {}

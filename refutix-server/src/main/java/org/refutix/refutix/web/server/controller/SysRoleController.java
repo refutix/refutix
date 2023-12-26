@@ -20,7 +20,7 @@ package org.refutix.refutix.web.server.controller;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import org.refutix.refutix.web.server.data.model.SysRole;
+import org.refutix.refutix.web.server.data.model.Role;
 import org.refutix.refutix.web.server.data.model.User;
 import org.refutix.refutix.web.server.data.model.UserRole;
 import org.refutix.refutix.web.server.data.result.PageR;
@@ -52,23 +52,23 @@ public class SysRoleController {
 
     @SaCheckPermission("system:role:list")
     @GetMapping("/list")
-    public PageR<SysRole> list(SysRole role) {
-        IPage<SysRole> page = PageSupport.startPage();
-        List<SysRole> list = roleService.selectRoleList(page, role);
-        return PageR.<SysRole>builder().success(true).total(page.getTotal()).data(list).build();
+    public PageR<Role> list(Role role) {
+        IPage<Role> page = PageSupport.startPage();
+        List<Role> list = roleService.selectRoleList(page, role);
+        return PageR.<Role>builder().success(true).total(page.getTotal()).data(list).build();
     }
 
     /** Obtain detailed information based on role number. */
     @SaCheckPermission("system:role:query")
     @GetMapping(value = "/{roleId}")
-    public R<SysRole> getInfo(@PathVariable Integer roleId) {
+    public R<Role> getInfo(@PathVariable Integer roleId) {
         return R.succeed(roleService.selectRoleById(roleId));
     }
 
     /** Add new role. */
     @SaCheckPermission("system:role:add")
     @PostMapping
-    public R<Void> add(@Validated @RequestBody SysRole role) {
+    public R<Void> add(@Validated @RequestBody Role role) {
         if (!roleService.checkRoleNameUnique(role)) {
             return R.failed(Status.ROLE_NAME_IS_EXIST, role.getRoleName());
         } else if (!roleService.checkRoleKeyUnique(role)) {
@@ -81,7 +81,7 @@ public class SysRoleController {
     /** Update role info. */
     @SaCheckPermission("system:role:edit")
     @PutMapping
-    public R<Void> edit(@Validated @RequestBody SysRole role) {
+    public R<Void> edit(@Validated @RequestBody Role role) {
         roleService.checkRoleAllowed(role);
         if (!roleService.checkRoleNameUnique(role)) {
             return R.failed(Status.ROLE_NAME_IS_EXIST, role.getRoleName());
@@ -99,7 +99,7 @@ public class SysRoleController {
     /** Update role status. */
     @SaCheckPermission("system:role:edit")
     @PutMapping("/changeStatus")
-    public R<Void> changeStatus(@RequestBody SysRole role) {
+    public R<Void> changeStatus(@RequestBody Role role) {
         roleService.checkRoleAllowed(role);
         return roleService.updateRoleStatus(role) ? R.succeed() : R.failed();
     }
@@ -114,7 +114,7 @@ public class SysRoleController {
     /** Obtain a list of role selection boxes. */
     @SaCheckPermission("system:role:query")
     @GetMapping("/all")
-    public R<List<SysRole>> all() {
+    public R<List<Role>> all() {
         return R.succeed(roleService.list());
     }
 
@@ -122,7 +122,7 @@ public class SysRoleController {
     @SaCheckPermission("system:role:list")
     @GetMapping("/authUser/allocatedList")
     public PageR<User> allocatedList(User user) {
-        IPage<SysRole> page = PageSupport.startPage();
+        IPage<Role> page = PageSupport.startPage();
         List<User> list = userService.selectAllocatedList(user);
         return PageR.<User>builder().success(true).total(page.getTotal()).data(list).build();
     }
@@ -131,7 +131,7 @@ public class SysRoleController {
     @SaCheckPermission("system:role:list")
     @GetMapping("/authUser/unallocatedList")
     public PageR<User> unallocatedList(User user) {
-        IPage<SysRole> page = PageSupport.startPage();
+        IPage<Role> page = PageSupport.startPage();
         List<User> list = userService.selectUnallocatedList(user);
         return PageR.<User>builder().success(true).total(page.getTotal()).data(list).build();
     }

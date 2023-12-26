@@ -20,7 +20,7 @@ package org.refutix.refutix.web.server.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.Test;
-import org.refutix.refutix.web.server.data.model.SysMenu;
+import org.refutix.refutix.web.server.data.model.Menu;
 import org.refutix.refutix.web.server.data.result.R;
 import org.refutix.refutix.web.server.data.tree.TreeSelect;
 import org.refutix.refutix.web.server.data.vo.RoleMenuTreeselectVO;
@@ -41,7 +41,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /** Test for SysMenuController. */
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SysMenuControllerTest extends ControllerTestBase {
+public class MenuControllerTest extends ControllerTestBase {
 
     private static final String menuPath = "/api/menu";
 
@@ -58,8 +58,8 @@ public class SysMenuControllerTest extends ControllerTestBase {
                         .andReturn()
                         .getResponse()
                         .getContentAsString();
-        R<List<SysMenu>> r =
-                ObjectMapperUtils.fromJSON(result, new TypeReference<R<List<SysMenu>>>() {});
+        R<List<Menu>> r =
+                ObjectMapperUtils.fromJSON(result, new TypeReference<R<List<Menu>>>() {});
         assertEquals(200, r.getCode());
         assertNotNull(r.getData());
         assertTrue(r.getData().size() > 0);
@@ -78,7 +78,7 @@ public class SysMenuControllerTest extends ControllerTestBase {
                         .andReturn()
                         .getResponse()
                         .getContentAsString();
-        R<SysMenu> r = ObjectMapperUtils.fromJSON(result, new TypeReference<R<SysMenu>>() {});
+        R<Menu> r = ObjectMapperUtils.fromJSON(result, new TypeReference<R<Menu>>() {});
         assertEquals(200, r.getCode());
         assertNotNull(r.getData());
         assertEquals(1, (int) r.getData().getId());

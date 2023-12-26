@@ -20,8 +20,8 @@ package org.refutix.refutix.web.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.refutix.refutix.web.server.data.model.UserTenant;
+import org.refutix.refutix.web.server.data.model.UserTenantRel;
 
 /** user_tenant table mapper. */
 @Mapper
-public interface UserTenantMapper extends BaseMapper<UserTenant> {}
+public interface UserTenantMapper extends BaseMapper<UserTenantRel> {}

@@ -16,10 +16,24 @@
  * limitations under the License.
  */
 
-package org.refutix.refutix.web.server.service;
+package org.refutix.refutix.web.server.data.model;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import org.refutix.refutix.web.server.data.model.UserTenantRel;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.data.relational.core.mapping.Table;
 
-/** Tenant Service. */
-public interface UserTenantService extends IService<UserTenantRel> {}
+/** user_tenant table model. */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@Table(name = "refutix_user_tenant_rel")
+public class UserTenantRel extends BaseModel {
+
+    private static final long serialVersionUID = 1L;
+
+    /** user id. */
+    private Integer userId;
+
+    /** tenant id. */
+    @TableLogic private Integer tenantId;
+}

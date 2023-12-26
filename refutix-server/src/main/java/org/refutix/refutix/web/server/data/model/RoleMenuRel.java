@@ -18,20 +18,20 @@
 
 package org.refutix.refutix.web.server.data.model;
 
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.relational.core.mapping.Table;
 
-/** user_tenant table model. */
+/** role_menu table. */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserTenant extends BaseModel {
+@Table(name = "refutix_role_menu_rel")
+public class RoleMenuRel extends BaseModel {
+    /** role id. */
+    private Integer roleId;
+
+    /** menu id. */
+    private Integer menuId;
 
     private static final long serialVersionUID = 1L;
-
-    /** user id. */
-    private Integer userId;
-
-    /** tenant id. */
-    @TableLogic private Integer tenantId;
 }

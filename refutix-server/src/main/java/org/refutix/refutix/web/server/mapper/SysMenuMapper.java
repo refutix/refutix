@@ -21,20 +21,20 @@ package org.refutix.refutix.web.server.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.refutix.refutix.web.server.data.model.SysMenu;
+import org.refutix.refutix.web.server.data.model.Menu;
 
 import java.util.List;
 
 /** Menu mapper. */
 @Mapper
-public interface SysMenuMapper extends BaseMapper<SysMenu> {
+public interface SysMenuMapper extends BaseMapper<Menu> {
     /**
      * Query system menu list.
      *
      * @param menu query params
      * @return result
      */
-    List<SysMenu> selectMenuList(@Param("menu") SysMenu menu);
+    List<Menu> selectMenuList(@Param("menu") Menu menu);
 
     /**
      * Query all menu perms.
@@ -49,8 +49,8 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      * @param menu query params
      * @return menu list
      */
-    List<SysMenu> selectMenuListByUserId(
-            @Param("menu") SysMenu menu, @Param("userId") Integer userId);
+    List<Menu> selectMenuListByUserId(
+            @Param("menu") Menu menu, @Param("userId") Integer userId);
 
     /**
      * Query permissions based on role ID.
@@ -73,7 +73,7 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      *
      * @return menu list
      */
-    List<SysMenu> selectMenuTreeAll();
+    List<Menu> selectMenuTreeAll();
 
     /**
      * Query menu list by user ID.
@@ -81,7 +81,7 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      * @param userId user ID
      * @return menu list
      */
-    List<SysMenu> selectMenuTreeByUserId(Integer userId);
+    List<Menu> selectMenuTreeByUserId(Integer userId);
 
     /**
      * Query menu tree information based on role ID.
@@ -97,7 +97,7 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      * @param menuId menu ID
      * @return menu info
      */
-    SysMenu selectMenuById(Integer menuId);
+    Menu selectMenuById(Integer menuId);
 
     /**
      * Is there a menu sub node present.
@@ -114,6 +114,6 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      * @param parentId parent ID
      * @return result
      */
-    SysMenu checkMenuNameUnique(
+    Menu checkMenuNameUnique(
             @Param("menuName") String menuName, @Param("parentId") Integer parentId);
 }

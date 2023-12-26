@@ -19,7 +19,7 @@
 package org.refutix.refutix.web.server.data.tree;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.refutix.refutix.web.server.data.model.SysMenu;
+import org.refutix.refutix.web.server.data.model.Menu;
 
 import java.io.Serializable;
 import java.util.List;
@@ -41,7 +41,7 @@ public class TreeSelect implements Serializable {
 
     public TreeSelect() {}
 
-    public TreeSelect(SysMenu menu) {
+    public TreeSelect(Menu menu) {
         this.id = menu.getId();
         this.label = menu.getMenuName();
         this.children =

@@ -23,7 +23,7 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.refutix.refutix.web.server.data.model.SysRole;
+import org.refutix.refutix.web.server.data.model.Role;
 import org.refutix.refutix.web.server.data.result.PageR;
 import org.refutix.refutix.web.server.data.result.R;
 import org.refutix.refutix.web.server.util.ObjectMapperUtils;
@@ -42,7 +42,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class SysRoleControllerTest extends ControllerTestBase {
+public class RoleControllerTest extends ControllerTestBase {
 
     private static final String rolePath = "/api/role";
 
@@ -52,19 +52,19 @@ public class SysRoleControllerTest extends ControllerTestBase {
     @Test
     @Order(1)
     public void testAddRole() throws Exception {
-        SysRole sysRole = new SysRole();
-        sysRole.setId(roleId);
-        sysRole.setRoleName(roleName);
-        sysRole.setRoleKey(roleName);
-        sysRole.setSort(3);
-        sysRole.setEnabled(true);
-        sysRole.setIsDelete(false);
-        sysRole.setRemark(roleName);
+        Role role = new Role();
+        role.setId(roleId);
+        role.setRoleName(roleName);
+        role.setRoleKey(roleName);
+        role.setSort(3);
+        role.setEnabled(true);
+        role.setIsDelete(false);
+        role.setRemark(roleName);
 
         mockMvc.perform(
                         MockMvcRequestBuilders.post(rolePath)
                                 .cookie(cookie)
-                                .content(ObjectMapperUtils.toJSON(sysRole))
+                                .content(ObjectMapperUtils.toJSON(role))
                                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -86,8 +86,8 @@ public class SysRoleControllerTest extends ControllerTestBase {
                         .getResponse()
                         .getContentAsString();
 
-        R<SysRole> r =
-                ObjectMapperUtils.fromJSON(responseString, new TypeReference<R<SysRole>>() {});
+        R<Role> r =
+                ObjectMapperUtils.fromJSON(responseString, new TypeReference<R<Role>>() {});
         assertEquals(200, r.getCode());
         assertNotNull(r.getData());
         assertEquals(r.getData().getRoleName(), roleName);
@@ -97,19 +97,19 @@ public class SysRoleControllerTest extends ControllerTestBase {
     @Order(3)
     public void testEditRole() throws Exception {
         String newRoleName = roleName + "-edit";
-        SysRole sysRole = new SysRole();
-        sysRole.setId(roleId);
-        sysRole.setRoleName(newRoleName);
-        sysRole.setRoleKey(newRoleName);
-        sysRole.setSort(3);
-        sysRole.setEnabled(true);
-        sysRole.setIsDelete(false);
-        sysRole.setRemark(newRoleName);
+        Role role = new Role();
+        role.setId(roleId);
+        role.setRoleName(newRoleName);
+        role.setRoleKey(newRoleName);
+        role.setSort(3);
+        role.setEnabled(true);
+        role.setIsDelete(false);
+        role.setRemark(newRoleName);
 
         mockMvc.perform(
                         MockMvcRequestBuilders.put(rolePath)
                                 .cookie(cookie)
-                                .content(ObjectMapperUtils.toJSON(sysRole))
+                                .content(ObjectMapperUtils.toJSON(role))
                                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -126,8 +126,8 @@ public class SysRoleControllerTest extends ControllerTestBase {
                         .getResponse()
                         .getContentAsString();
 
-        R<SysRole> r =
-                ObjectMapperUtils.fromJSON(responseString, new TypeReference<R<SysRole>>() {});
+        R<Role> r =
+                ObjectMapperUtils.fromJSON(responseString, new TypeReference<R<Role>>() {});
         assertEquals(200, r.getCode());
         assertNotNull(r.getData());
         assertEquals(r.getData().getRoleName(), newRoleName);

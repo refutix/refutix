@@ -20,13 +20,13 @@ package org.refutix.refutix.web.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.refutix.refutix.web.server.data.model.RoleMenu;
+import org.refutix.refutix.web.server.data.model.RoleMenuRel;
 
 import java.util.List;
 
 /** role-menu mapper. */
 @Mapper
-public interface RoleMenuMapper extends BaseMapper<RoleMenu> {
+public interface RoleMenuMapper extends BaseMapper<RoleMenuRel> {
     /**
      * Query menu usage quantity.
      *
@@ -54,10 +54,10 @@ public interface RoleMenuMapper extends BaseMapper<RoleMenu> {
     /**
      * Batch Add Role Menu Information.
      *
-     * @param roleMenuList role-menu List
+     * @param roleMenuRelList role-menu List
      * @return result
      */
-    int batchRoleMenu(List<RoleMenu> roleMenuList);
+    int batchRoleMenu(List<RoleMenuRel> roleMenuRelList);
 
     /**
      * Query the menu permissions that users have.
@@ -65,5 +65,5 @@ public interface RoleMenuMapper extends BaseMapper<RoleMenu> {
      * @param userId user ID
      * @return result
      */
-    List<RoleMenu> queryRoleMenuByUser(Integer userId);
+    List<RoleMenuRel> queryRoleMenuByUser(Integer userId);
 }
