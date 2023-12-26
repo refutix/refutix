@@ -22,8 +22,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.base.Preconditions;
-import org.refutix.refutix.web.server.data.model.RoleMenuRel;
 import org.refutix.refutix.web.server.data.model.Role;
+import org.refutix.refutix.web.server.data.model.RoleMenuRel;
 import org.refutix.refutix.web.server.data.model.UserRole;
 import org.refutix.refutix.web.server.data.result.exception.role.RoleInUsedException;
 import org.refutix.refutix.web.server.mapper.RoleMenuMapper;
@@ -42,8 +42,7 @@ import java.util.Set;
 
 /** Role Service. */
 @Service
-public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, Role>
-        implements SysRoleService {
+public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, Role> implements SysRoleService {
 
     @Autowired private SysRoleMapper roleMapper;
 

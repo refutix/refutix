@@ -58,8 +58,7 @@ public class MenuControllerTest extends ControllerTestBase {
                         .andReturn()
                         .getResponse()
                         .getContentAsString();
-        R<List<Menu>> r =
-                ObjectMapperUtils.fromJSON(result, new TypeReference<R<List<Menu>>>() {});
+        R<List<Menu>> r = ObjectMapperUtils.fromJSON(result, new TypeReference<R<List<Menu>>>() {});
         assertEquals(200, r.getCode());
         assertNotNull(r.getData());
         assertTrue(r.getData().size() > 0);

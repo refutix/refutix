@@ -49,8 +49,7 @@ public interface SysMenuMapper extends BaseMapper<Menu> {
      * @param menu query params
      * @return menu list
      */
-    List<Menu> selectMenuListByUserId(
-            @Param("menu") Menu menu, @Param("userId") Integer userId);
+    List<Menu> selectMenuListByUserId(@Param("menu") Menu menu, @Param("userId") Integer userId);
 
     /**
      * Query permissions based on role ID.

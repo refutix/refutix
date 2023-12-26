@@ -86,8 +86,7 @@ public class RoleControllerTest extends ControllerTestBase {
                         .getResponse()
                         .getContentAsString();
 
-        R<Role> r =
-                ObjectMapperUtils.fromJSON(responseString, new TypeReference<R<Role>>() {});
+        R<Role> r = ObjectMapperUtils.fromJSON(responseString, new TypeReference<R<Role>>() {});
         assertEquals(200, r.getCode());
         assertNotNull(r.getData());
         assertEquals(r.getData().getRoleName(), roleName);
@@ -126,8 +125,7 @@ public class RoleControllerTest extends ControllerTestBase {
                         .getResponse()
                         .getContentAsString();
 
-        R<Role> r =
-                ObjectMapperUtils.fromJSON(responseString, new TypeReference<R<Role>>() {});
+        R<Role> r = ObjectMapperUtils.fromJSON(responseString, new TypeReference<R<Role>>() {});
         assertEquals(200, r.getCode());
         assertNotNull(r.getData());
         assertEquals(r.getData().getRoleName(), newRoleName);

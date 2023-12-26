@@ -47,8 +47,7 @@ import java.util.stream.Collectors;
 
 /** Menu service. */
 @Service
-public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, Menu>
-        implements SysMenuService {
+public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, Menu> implements SysMenuService {
     public static final String PREMISSION_STRING = "perms[\"{0}\"]";
 
     @Autowired private SysMenuMapper menuMapper;
