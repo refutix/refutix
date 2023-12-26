@@ -23,7 +23,7 @@ under the License. */
   .logo-bar {
     display: flex;
     align-items: center;
-    padding-left: 3px;
+    padding-left: 4px;
     width: 240px;
     height: 100%;
     font-size: 18px;
@@ -31,11 +31,10 @@ under the License. */
     .logo {
       display: flex;
       align-items: center;
-      margin-left: -3px;
-      margin-top: -4px;
+      margin-top: -2px;
       img {
-        width: 58px;
-        height: 58px;
+        width: 54px;
+        height: 54px;
       }
     }
     .logo-text {
