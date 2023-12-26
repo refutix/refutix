@@ -21,7 +21,7 @@ package org.refutix.refutix.web.server.controller;
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.dev33.satoken.stp.StpUtil;
 import org.refutix.refutix.web.server.constant.Constants;
-import org.refutix.refutix.web.server.data.model.SysMenu;
+import org.refutix.refutix.web.server.data.model.Menu;
 import org.refutix.refutix.web.server.data.result.R;
 import org.refutix.refutix.web.server.data.result.enums.Status;
 import org.refutix.refutix.web.server.data.tree.TreeSelect;
@@ -51,29 +51,29 @@ public class SysMenuController {
     /** Get menu list. */
     @SaCheckPermission("system:menu:list")
     @GetMapping("/list")
-    public R<List<SysMenu>> list(SysMenu menu) {
-        List<SysMenu> menus = menuService.selectMenuList(menu);
+    public R<List<Menu>> list(Menu menu) {
+        List<Menu> menus = menuService.selectMenuList(menu);
         return R.succeed(menus);
     }
 
     /** Get menu info by menuId. */
     @SaCheckPermission("system:menu:query")
     @GetMapping(value = "/{menuId}")
-    public R<SysMenu> getInfo(@PathVariable Integer menuId) {
+    public R<Menu> getInfo(@PathVariable Integer menuId) {
         return R.succeed(menuService.selectMenuById(menuId));
     }
 
     /** Get menu drop-down tree list. */
     @GetMapping("/treeselect")
-    public R<List<TreeSelect>> treeselect(SysMenu menu) {
-        List<SysMenu> menus = menuService.selectMenuList(menu);
+    public R<List<TreeSelect>> treeselect(Menu menu) {
+        List<Menu> menus = menuService.selectMenuList(menu);
         return R.succeed(menuService.buildMenuTreeSelect(menus));
     }
 
     /** Load the corresponding character menu list tree. */
     @GetMapping(value = "/roleMenuTreeselect/{roleId}")
     public R<RoleMenuTreeselectVO> roleMenuTreeselect(@PathVariable("roleId") Integer roleId) {
-        List<SysMenu> menus = menuService.selectMenuList();
+        List<Menu> menus = menuService.selectMenuList();
 
         List<TreeSelect> treeMenus = menuService.buildMenuTreeSelect(menus);
         List<Integer> checkedKeys = menuService.selectMenuListByRoleId(roleId);
@@ -83,7 +83,7 @@ public class SysMenuController {
     /** add new menu. */
     @SaCheckPermission("system:menu:add")
     @PostMapping
-    public R<Void> add(@Validated @RequestBody SysMenu menu) {
+    public R<Void> add(@Validated @RequestBody Menu menu) {
         if (!menuService.checkMenuNameUnique(menu)) {
             return R.failed(Status.MENU_NAME_IS_EXIST, menu.getMenuName());
         } else if (Constants.YES_FRAME == menu.getIsFrame()
@@ -96,7 +96,7 @@ public class SysMenuController {
     /** update menu. */
     @SaCheckPermission("system:menu:edit")
     @PutMapping
-    public R<Void> edit(@Validated @RequestBody SysMenu menu) {
+    public R<Void> edit(@Validated @RequestBody Menu menu) {
         if (!menuService.checkMenuNameUnique(menu)) {
             return R.failed(Status.MENU_NAME_IS_EXIST, menu.getMenuName());
         } else if (Constants.YES_FRAME == menu.getIsFrame()
@@ -120,7 +120,7 @@ public class SysMenuController {
     @GetMapping("/getRouters")
     public R<List<RouterVO>> getRouters() {
         int userId = StpUtil.getLoginIdAsInt();
-        List<SysMenu> menus = menuService.selectMenuTreeByUserId(userId);
+        List<Menu> menus = menuService.selectMenuTreeByUserId(userId);
         return R.succeed(menuService.buildMenus(menus));
     }
 }

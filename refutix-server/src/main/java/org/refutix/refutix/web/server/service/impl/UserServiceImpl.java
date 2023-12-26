@@ -24,9 +24,9 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.refutix.refutix.web.server.data.dto.LoginDTO;
 import org.refutix.refutix.web.server.data.enums.UserType;
-import org.refutix.refutix.web.server.data.model.RoleMenu;
-import org.refutix.refutix.web.server.data.model.SysMenu;
-import org.refutix.refutix.web.server.data.model.SysRole;
+import org.refutix.refutix.web.server.data.model.Menu;
+import org.refutix.refutix.web.server.data.model.Role;
+import org.refutix.refutix.web.server.data.model.RoleMenuRel;
 import org.refutix.refutix.web.server.data.model.User;
 import org.refutix.refutix.web.server.data.model.UserRole;
 import org.refutix.refutix.web.server.data.result.exception.BaseException;
@@ -103,29 +103,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         userInfoVo.setSaTokenInfo(StpUtil.getTokenInfo());
 
         // get user role list
-        List<SysRole> sysRoles = new ArrayList<>();
+        List<Role> roles = new ArrayList<>();
         List<UserRole> userRoleList = userRoleService.selectUserRoleListByUserId(user);
 
         // get role list
         userRoleList.forEach(
                 userRole -> {
-                    sysRoles.add(sysRoleService.getById(userRole.getRoleId()));
+                    roles.add(sysRoleService.getById(userRole.getRoleId()));
                 });
-        userInfoVo.setRoleList(sysRoles);
+        userInfoVo.setRoleList(roles);
         // get menu list
-        List<SysMenu> sysMenus = new ArrayList<>();
+        List<Menu> menus = new ArrayList<>();
         userRoleList.forEach(
                 userRole -> {
                     roleMenuService
                             .list(
-                                    new LambdaQueryWrapper<RoleMenu>()
-                                            .eq(RoleMenu::getRoleId, userRole.getRoleId()))
+                                    new LambdaQueryWrapper<RoleMenuRel>()
+                                            .eq(RoleMenuRel::getRoleId, userRole.getRoleId()))
                             .forEach(
                                     roleMenu -> {
-                                        sysMenus.add(sysMenuService.getById(roleMenu.getMenuId()));
+                                        menus.add(sysMenuService.getById(roleMenu.getMenuId()));
                                     });
                 });
-        userInfoVo.setSysMenuList(sysMenus);
+        userInfoVo.setMenuList(menus);
 
         userInfoVo.setCurrentTenant(tenantService.getById(1));
         return userInfoVo;

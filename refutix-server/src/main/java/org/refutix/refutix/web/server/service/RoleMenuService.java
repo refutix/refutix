@@ -19,7 +19,7 @@
 package org.refutix.refutix.web.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.refutix.refutix.web.server.data.model.RoleMenu;
+import org.refutix.refutix.web.server.data.model.RoleMenuRel;
 
 /** RoleMenu Service. */
-public interface RoleMenuService extends IService<RoleMenu> {}
+public interface RoleMenuService extends IService<RoleMenuRel> {}

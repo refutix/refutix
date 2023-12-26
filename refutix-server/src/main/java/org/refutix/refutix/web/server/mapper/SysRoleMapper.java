@@ -22,15 +22,15 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.refutix.refutix.web.server.data.model.SysRole;
+import org.refutix.refutix.web.server.data.model.Role;
 
 import java.util.List;
 
 /** Role Mapper. */
 @Mapper
-public interface SysRoleMapper extends BaseMapper<SysRole> {
+public interface SysRoleMapper extends BaseMapper<Role> {
 
-    List<SysRole> selectRoleList(IPage<SysRole> page, @Param("role") SysRole role);
+    List<Role> selectRoleList(IPage<Role> page, @Param("role") Role role);
 
     /**
      * Query roles by user ID.
@@ -38,14 +38,14 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param userId user ID
      * @return role list
      */
-    List<SysRole> selectRolePermissionByUserId(Integer userId);
+    List<Role> selectRolePermissionByUserId(Integer userId);
 
     /**
      * Query all roles.
      *
      * @return role list
      */
-    List<SysRole> selectRoleAll();
+    List<Role> selectRoleAll();
 
     /**
      * Obtain a list of role selection boxes by user ID.
@@ -61,7 +61,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param roleId role ID
      * @return role info
      */
-    SysRole selectRoleById(Integer roleId);
+    Role selectRoleById(Integer roleId);
 
     /**
      * Query role info by user.
@@ -69,5 +69,5 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param userName user name
      * @return role list
      */
-    List<SysRole> selectRolesByUserName(String userName);
+    List<Role> selectRolesByUserName(String userName);
 }

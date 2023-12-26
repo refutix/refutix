@@ -22,8 +22,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.base.Preconditions;
-import org.refutix.refutix.web.server.data.model.RoleMenu;
-import org.refutix.refutix.web.server.data.model.SysRole;
+import org.refutix.refutix.web.server.data.model.Role;
+import org.refutix.refutix.web.server.data.model.RoleMenuRel;
 import org.refutix.refutix.web.server.data.model.UserRole;
 import org.refutix.refutix.web.server.data.result.exception.role.RoleInUsedException;
 import org.refutix.refutix.web.server.mapper.RoleMenuMapper;
@@ -42,8 +42,7 @@ import java.util.Set;
 
 /** Role Service. */
 @Service
-public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
-        implements SysRoleService {
+public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, Role> implements SysRoleService {
 
     @Autowired private SysRoleMapper roleMapper;
 
@@ -58,7 +57,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
      * @return role list
      */
     @Override
-    public List<SysRole> selectRoleList(IPage<SysRole> page, SysRole role) {
+    public List<Role> selectRoleList(IPage<Role> page, Role role) {
         return roleMapper.selectRoleList(page, role);
     }
 
@@ -69,11 +68,11 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
      * @return role list
      */
     @Override
-    public List<SysRole> selectRolesByUserId(Integer userId) {
-        List<SysRole> userRoles = roleMapper.selectRolePermissionByUserId(userId);
-        List<SysRole> roles = this.list();
-        for (SysRole role : roles) {
-            for (SysRole userRole : userRoles) {
+    public List<Role> selectRolesByUserId(Integer userId) {
+        List<Role> userRoles = roleMapper.selectRolePermissionByUserId(userId);
+        List<Role> roles = this.list();
+        for (Role role : roles) {
+            for (Role userRole : userRoles) {
                 if (role.getId().intValue() == userRole.getId().intValue()) {
                     role.setFlag(true);
                     break;
@@ -91,9 +90,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
      */
     @Override
     public Set<String> selectRolePermissionByUserId(Integer userId) {
-        List<SysRole> perms = roleMapper.selectRolePermissionByUserId(userId);
+        List<Role> perms = roleMapper.selectRolePermissionByUserId(userId);
         Set<String> permsSet = new HashSet<>();
-        for (SysRole perm : perms) {
+        for (Role perm : perms) {
             if (perm != null) {
                 permsSet.addAll(Arrays.asList(perm.getRoleKey().trim().split(",")));
             }
@@ -119,7 +118,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
      * @return role info
      */
     @Override
-    public SysRole selectRoleById(Integer roleId) {
+    public Role selectRoleById(Integer roleId) {
         return this.getById(roleId);
     }
 
@@ -130,9 +129,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
      * @return result
      */
     @Override
-    public boolean checkRoleNameUnique(SysRole role) {
+    public boolean checkRoleNameUnique(Role role) {
         int roleId = role.getId() == null ? -1 : role.getId();
-        SysRole info = this.lambdaQuery().eq(SysRole::getRoleName, role.getRoleName()).one();
+        Role info = this.lambdaQuery().eq(Role::getRoleName, role.getRoleName()).one();
         return info == null || info.getId() == roleId;
     }
 
@@ -143,9 +142,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
      * @return result
      */
     @Override
-    public boolean checkRoleKeyUnique(SysRole role) {
+    public boolean checkRoleKeyUnique(Role role) {
         int roleId = role.getId() == null ? -1 : role.getId();
-        SysRole info = this.lambdaQuery().eq(SysRole::getRoleKey, role.getRoleKey()).one();
+        Role info = this.lambdaQuery().eq(Role::getRoleKey, role.getRoleKey()).one();
         return info == null || info.getId() == roleId;
     }
 
@@ -155,7 +154,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
      * @param role role info
      */
     @Override
-    public boolean checkRoleAllowed(SysRole role) {
+    public boolean checkRoleAllowed(Role role) {
         return role.getId() != null && role.getId() == 1;
     }
 
@@ -167,7 +166,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int insertRole(SysRole role) {
+    public int insertRole(Role role) {
         this.save(role);
         return insertRoleMenu(role);
     }
@@ -180,7 +179,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int updateRole(SysRole role) {
+    public int updateRole(Role role) {
         this.updateById(role);
         roleMenuMapper.deleteRoleMenuByRoleId(role.getId());
         return insertRoleMenu(role);
@@ -191,12 +190,12 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
      *
      * @param role role info
      */
-    public int insertRoleMenu(SysRole role) {
+    public int insertRoleMenu(Role role) {
         int rows = 1;
         if (role.getMenuIds() != null && role.getMenuIds().length > 0) {
-            List<RoleMenu> list = new ArrayList<RoleMenu>();
+            List<RoleMenuRel> list = new ArrayList<RoleMenuRel>();
             for (Integer menuId : role.getMenuIds()) {
-                RoleMenu rm = new RoleMenu();
+                RoleMenuRel rm = new RoleMenuRel();
                 rm.setRoleId(role.getId());
                 rm.setMenuId(menuId);
                 list.add(rm);
@@ -231,10 +230,10 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
     @Transactional(rollbackFor = Exception.class)
     public int deleteRoleByIds(Integer[] roleIds) {
         for (Integer roleId : roleIds) {
-            SysRole sysRole = new SysRole();
+            Role sysRole = new Role();
             sysRole.setId(roleId);
             checkRoleAllowed(sysRole);
-            SysRole role = selectRoleById(roleId);
+            Role role = selectRoleById(roleId);
             if (countUserRoleByRoleId(roleId) > 0) {
                 throw new RoleInUsedException(role.getRoleName());
             }
@@ -299,11 +298,11 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
     }
 
     @Override
-    public boolean updateRoleStatus(SysRole role) {
+    public boolean updateRoleStatus(Role role) {
         Preconditions.checkArgument(role != null && role.getId() != null);
         return this.lambdaUpdate()
-                .set(SysRole::getEnabled, role.getEnabled())
-                .eq(SysRole::getId, role.getId())
+                .set(Role::getEnabled, role.getEnabled())
+                .eq(Role::getId, role.getId())
                 .update();
     }
 }

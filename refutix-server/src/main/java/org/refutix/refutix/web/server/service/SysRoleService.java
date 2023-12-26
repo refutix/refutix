@@ -20,14 +20,14 @@ package org.refutix.refutix.web.server.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.refutix.refutix.web.server.data.model.SysRole;
+import org.refutix.refutix.web.server.data.model.Role;
 import org.refutix.refutix.web.server.data.model.UserRole;
 
 import java.util.List;
 import java.util.Set;
 
 /** Role service. */
-public interface SysRoleService extends IService<SysRole> {
+public interface SysRoleService extends IService<Role> {
     /**
      * Paging and querying role data based on conditions.
      *
@@ -35,7 +35,7 @@ public interface SysRoleService extends IService<SysRole> {
      * @param role query params
      * @return role list
      */
-    List<SysRole> selectRoleList(IPage<SysRole> page, SysRole role);
+    List<Role> selectRoleList(IPage<Role> page, Role role);
 
     /**
      * Query role list based on user ID.
@@ -43,7 +43,7 @@ public interface SysRoleService extends IService<SysRole> {
      * @param userId user ID
      * @return role list
      */
-    List<SysRole> selectRolesByUserId(Integer userId);
+    List<Role> selectRolesByUserId(Integer userId);
 
     /**
      * Query role permissions based on user ID.
@@ -67,7 +67,7 @@ public interface SysRoleService extends IService<SysRole> {
      * @param roleId role ID
      * @return role info
      */
-    SysRole selectRoleById(Integer roleId);
+    Role selectRoleById(Integer roleId);
 
     /**
      * Verify if the role name is unique.
@@ -75,7 +75,7 @@ public interface SysRoleService extends IService<SysRole> {
      * @param role role info
      * @return result
      */
-    boolean checkRoleNameUnique(SysRole role);
+    boolean checkRoleNameUnique(Role role);
 
     /**
      * Verify whether role permissions are unique.
@@ -83,14 +83,14 @@ public interface SysRoleService extends IService<SysRole> {
      * @param role role info
      * @return result
      */
-    boolean checkRoleKeyUnique(SysRole role);
+    boolean checkRoleKeyUnique(Role role);
 
     /**
      * Verify whether the role allows operations.
      *
      * @param role role info
      */
-    boolean checkRoleAllowed(SysRole role);
+    boolean checkRoleAllowed(Role role);
 
     /**
      * Save role information.
@@ -98,7 +98,7 @@ public interface SysRoleService extends IService<SysRole> {
      * @param role role info
      * @return result
      */
-    int insertRole(SysRole role);
+    int insertRole(Role role);
 
     /**
      * Update role information.
@@ -106,7 +106,7 @@ public interface SysRoleService extends IService<SysRole> {
      * @param role role info
      * @return result
      */
-    int updateRole(SysRole role);
+    int updateRole(Role role);
 
     /**
      * Delete role through role ID.
@@ -164,5 +164,5 @@ public interface SysRoleService extends IService<SysRole> {
      * @param role role info
      * @return result
      */
-    boolean updateRoleStatus(SysRole role);
+    boolean updateRoleStatus(Role role);
 }

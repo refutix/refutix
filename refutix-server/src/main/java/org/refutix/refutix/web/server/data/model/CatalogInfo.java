@@ -36,7 +36,7 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@TableName(value = "catalog", autoResultMap = true)
+@TableName(value = "refutix_catalog", autoResultMap = true)
 public class CatalogInfo extends BaseModel {
 
     private String catalogType;

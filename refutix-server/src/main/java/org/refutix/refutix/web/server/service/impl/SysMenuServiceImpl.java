@@ -22,7 +22,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.refutix.refutix.web.server.constant.Constants;
 import org.refutix.refutix.web.server.data.enums.MenuType;
-import org.refutix.refutix.web.server.data.model.SysMenu;
+import org.refutix.refutix.web.server.data.model.Menu;
 import org.refutix.refutix.web.server.data.model.User;
 import org.refutix.refutix.web.server.data.tree.TreeSelect;
 import org.refutix.refutix.web.server.data.vo.MetaVO;
@@ -47,8 +47,7 @@ import java.util.stream.Collectors;
 
 /** Menu service. */
 @Service
-public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
-        implements SysMenuService {
+public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, Menu> implements SysMenuService {
     public static final String PREMISSION_STRING = "perms[\"{0}\"]";
 
     @Autowired private SysMenuMapper menuMapper;
@@ -63,8 +62,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return menu list
      */
     @Override
-    public List<SysMenu> selectMenuList() {
-        return selectMenuList(new SysMenu());
+    public List<Menu> selectMenuList() {
+        return selectMenuList(new Menu());
     }
 
     /**
@@ -74,8 +73,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return menu list
      */
     @Override
-    public List<SysMenu> selectMenuList(SysMenu menu) {
-        List<SysMenu> menuList;
+    public List<Menu> selectMenuList(Menu menu) {
+        List<Menu> menuList;
         int userId = StpUtil.getLoginIdAsInt();
         if (User.isAdmin(userId)) {
             menuList = menuMapper.selectMenuList(menu);
@@ -128,8 +127,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return menu list
      */
     @Override
-    public List<SysMenu> selectMenuTreeByUserId(Integer userId) {
-        List<SysMenu> menus = null;
+    public List<Menu> selectMenuTreeByUserId(Integer userId) {
+        List<Menu> menus = null;
         if (userId != null && userId == 1) {
             menus = menuMapper.selectMenuTreeAll();
         } else {
@@ -156,9 +155,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return router list
      */
     @Override
-    public List<RouterVO> buildMenus(List<SysMenu> menus) {
+    public List<RouterVO> buildMenus(List<Menu> menus) {
         List<RouterVO> routers = new LinkedList<RouterVO>();
-        for (SysMenu menu : menus) {
+        for (Menu menu : menus) {
             RouterVO router = new RouterVO();
             router.setHidden("1".equals(menu.getVisible()));
             router.setName(getRouteName(menu));
@@ -171,7 +170,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
                             menu.getIcon(),
                             menu.getIsCache() == 1,
                             menu.getPath()));
-            List<SysMenu> cMenus = menu.getChildren();
+            List<Menu> cMenus = menu.getChildren();
             if (!CollectionUtils.isEmpty(cMenus) && MenuType.DIR.getType().equals(menu.getType())) {
                 router.setAlwaysShow(true);
                 router.setRedirect("noRedirect");
@@ -217,11 +216,11 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return menu tree
      */
     @Override
-    public List<SysMenu> buildMenuTree(List<SysMenu> menus) {
-        List<SysMenu> returnList = new ArrayList<SysMenu>();
-        List<Integer> tempList = menus.stream().map(SysMenu::getId).collect(Collectors.toList());
-        for (Iterator<SysMenu> iterator = menus.iterator(); iterator.hasNext(); ) {
-            SysMenu menu = (SysMenu) iterator.next();
+    public List<Menu> buildMenuTree(List<Menu> menus) {
+        List<Menu> returnList = new ArrayList<Menu>();
+        List<Integer> tempList = menus.stream().map(Menu::getId).collect(Collectors.toList());
+        for (Iterator<Menu> iterator = menus.iterator(); iterator.hasNext(); ) {
+            Menu menu = (Menu) iterator.next();
             if (!tempList.contains(menu.getParentId())) {
                 recursionFn(menus, menu);
                 returnList.add(menu);
@@ -240,8 +239,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return menu tree select
      */
     @Override
-    public List<TreeSelect> buildMenuTreeSelect(List<SysMenu> menus) {
-        List<SysMenu> menuTrees = buildMenuTree(menus);
+    public List<TreeSelect> buildMenuTreeSelect(List<Menu> menus) {
+        List<Menu> menuTrees = buildMenuTree(menus);
         return menuTrees.stream().map(TreeSelect::new).collect(Collectors.toList());
     }
 
@@ -252,7 +251,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return menu info
      */
     @Override
-    public SysMenu selectMenuById(Integer menuId) {
+    public Menu selectMenuById(Integer menuId) {
         return menuMapper.selectMenuById(menuId);
     }
 
@@ -287,7 +286,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return result
      */
     @Override
-    public boolean insertMenu(SysMenu menu) {
+    public boolean insertMenu(Menu menu) {
         return this.save(menu);
     }
 
@@ -298,7 +297,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return result
      */
     @Override
-    public boolean updateMenu(SysMenu menu) {
+    public boolean updateMenu(Menu menu) {
         return this.updateById(menu);
     }
 
@@ -320,9 +319,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return result
      */
     @Override
-    public boolean checkMenuNameUnique(SysMenu menu) {
+    public boolean checkMenuNameUnique(Menu menu) {
         Integer menuId = menu.getId() == null ? -1 : menu.getId();
-        SysMenu info = menuMapper.checkMenuNameUnique(menu.getMenuName(), menu.getParentId());
+        Menu info = menuMapper.checkMenuNameUnique(menu.getMenuName(), menu.getParentId());
         return info != null && !menuId.equals(info.getId());
     }
 
@@ -332,7 +331,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @param menu menu info
      * @return router name
      */
-    public String getRouteName(SysMenu menu) {
+    public String getRouteName(Menu menu) {
         String routerName = StringUtils.capitalize(menu.getPath());
         if (isMenuFrame(menu)) {
             routerName = StringUtils.EMPTY;
@@ -346,7 +345,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @param menu menu info
      * @return router path
      */
-    public String getRouterPath(SysMenu menu) {
+    public String getRouterPath(Menu menu) {
         String routerPath = menu.getPath();
         if (menu.getParentId() != 0 && isInnerLink(menu)) {
             routerPath = innerLinkReplaceEach(routerPath);
@@ -367,7 +366,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @param menu menu info
      * @return component info
      */
-    public String getComponent(SysMenu menu) {
+    public String getComponent(Menu menu) {
         String component = Constants.LAYOUT;
         if (StringUtils.isNotEmpty(menu.getComponent()) && !isMenuFrame(menu)) {
             component = menu.getComponent();
@@ -387,7 +386,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @param menu menu info
      * @return result
      */
-    public boolean isMenuFrame(SysMenu menu) {
+    public boolean isMenuFrame(Menu menu) {
         return menu.getParentId() == 0
                 && MenuType.MENU.getType().equals(menu.getType())
                 && menu.getIsFrame().equals(Constants.NO_FRAME);
@@ -399,7 +398,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @param menu menu info
      * @return result
      */
-    public boolean isInnerLink(SysMenu menu) {
+    public boolean isInnerLink(Menu menu) {
         return menu.getIsFrame().equals(Constants.NO_FRAME) && StringUtils.isHttp(menu.getPath());
     }
 
@@ -409,7 +408,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @param menu menu info
      * @return result
      */
-    public boolean isParentView(SysMenu menu) {
+    public boolean isParentView(Menu menu) {
         return menu.getParentId() != 0 && MenuType.DIR.getType().equals(menu.getType());
     }
 
@@ -420,9 +419,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @param parentId parent ID
      * @return menu list
      */
-    public List<SysMenu> getChildPerms(List<SysMenu> list, int parentId) {
-        List<SysMenu> returnList = new ArrayList<SysMenu>();
-        for (SysMenu t : list) {
+    public List<Menu> getChildPerms(List<Menu> list, int parentId) {
+        List<Menu> returnList = new ArrayList<Menu>();
+        for (Menu t : list) {
             if (t.getParentId() == parentId) {
                 recursionFn(list, t);
                 returnList.add(t);
@@ -431,19 +430,19 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         return returnList;
     }
 
-    private void recursionFn(List<SysMenu> list, SysMenu t) {
-        List<SysMenu> childList = getChildList(list, t);
+    private void recursionFn(List<Menu> list, Menu t) {
+        List<Menu> childList = getChildList(list, t);
         t.setChildren(childList);
-        for (SysMenu tChild : childList) {
+        for (Menu tChild : childList) {
             if (hasChild(list, tChild)) {
                 recursionFn(list, tChild);
             }
         }
     }
 
-    private List<SysMenu> getChildList(List<SysMenu> list, SysMenu t) {
-        List<SysMenu> tlist = new ArrayList<SysMenu>();
-        for (SysMenu n : list) {
+    private List<Menu> getChildList(List<Menu> list, Menu t) {
+        List<Menu> tlist = new ArrayList<Menu>();
+        for (Menu n : list) {
             if (n.getParentId().equals(t.getId())) {
                 tlist.add(n);
             }
@@ -451,7 +450,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         return tlist;
     }
 
-    private boolean hasChild(List<SysMenu> list, SysMenu t) {
+    private boolean hasChild(List<Menu> list, Menu t) {
         return getChildList(list, t).size() > 0;
     }
 

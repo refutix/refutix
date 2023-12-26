@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <collection  property="roles"   javaType="java.util.List"           resultMap="RoleResult" />
     </resultMap>
 	
-    <resultMap id="RoleResult" type="org.refutix.refutix.web.server.data.model.SysRole">
+    <resultMap id="RoleResult" type="org.refutix.refutix.web.server.data.model.Role">
         <id     property="id"       column="role_id"        />
         <result property="roleName"     column="role_name"      />
         <result property="roleKey"      column="role_key"       />
