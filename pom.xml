@@ -114,6 +114,7 @@ under the License.
         <hutool.version>5.8.11</hutool.version>
         <gson.version>2.10.1</gson.version>
         <auto-service.version>1.0.1</auto-service.version>
+        <fabric8.version>6.7.0</fabric8.version>
     </properties>
 
     <dependencyManagement>
@@ -227,6 +228,11 @@ under the License.
                 <artifactId>auto-service</artifactId>
                 <version>${auto-service.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.fabric8</groupId>
+                <artifactId>kubernetes-client</artifactId>
+                <version>${fabric8.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

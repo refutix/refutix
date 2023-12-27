@@ -31,5 +31,28 @@ under the License.
     <name>Refutix : Plugin : Flink : Kubernetes : Operator</name>
     <artifactId>refutix-plugin-flink-kubernetes-operator</artifactId>
 
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>refutix-plugin-flink-kubernetes-operator-1.6.0</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.refutix</groupId>
+            <artifactId>refutix-plugin-flink-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.fabric8</groupId>
+            <artifactId>kubernetes-client</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.squareup.okhttp3</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
 
 </project>
