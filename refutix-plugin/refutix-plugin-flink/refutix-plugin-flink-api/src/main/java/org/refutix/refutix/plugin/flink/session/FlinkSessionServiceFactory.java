@@ -21,7 +21,7 @@ package org.refutix.refutix.plugin.flink.session;
 import com.google.auto.service.AutoService;
 import org.refutix.refutix.plugin.flink.common.FlinkCommonPluginServiceFactory;
 
-/** Flink Session Service Factory */
+/** Flink Session Service Factory. */
 @AutoService(FlinkSessionServiceFactory.class)
 public interface FlinkSessionServiceFactory
         extends FlinkCommonPluginServiceFactory<FlinkSessionService> {}

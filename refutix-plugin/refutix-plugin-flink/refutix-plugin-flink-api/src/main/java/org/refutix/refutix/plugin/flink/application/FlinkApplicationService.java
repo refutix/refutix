@@ -18,5 +18,5 @@
 
 package org.refutix.refutix.plugin.flink.application;
 
-/** Flink Application Service Api */
+/** Flink Application Service Api. */
 public interface FlinkApplicationService {}

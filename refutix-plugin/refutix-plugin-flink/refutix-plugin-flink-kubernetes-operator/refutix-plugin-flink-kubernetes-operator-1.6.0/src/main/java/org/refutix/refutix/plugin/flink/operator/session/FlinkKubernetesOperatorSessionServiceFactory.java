@@ -24,7 +24,7 @@ import org.refutix.refutix.plugin.flink.session.FlinkSessionServiceFactory;
 
 import java.util.Properties;
 
-/** FlinkKubernetesOperatorSessionServiceFactory {@link FlinkSessionServiceFactory} */
+/** FlinkKubernetesOperatorSessionServiceFactory {@link FlinkSessionServiceFactory}. */
 @AutoService(FlinkSessionServiceFactory.class)
 public class FlinkKubernetesOperatorSessionServiceFactory implements FlinkSessionServiceFactory {
     @Override

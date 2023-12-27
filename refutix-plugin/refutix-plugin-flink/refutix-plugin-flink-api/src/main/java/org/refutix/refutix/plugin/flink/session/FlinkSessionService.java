@@ -18,7 +18,7 @@
 
 package org.refutix.refutix.plugin.flink.session;
 
-/** Flink Session Service Api */
+/** Flink Session Service Api. */
 public interface FlinkSessionService {
 
     void createSession();

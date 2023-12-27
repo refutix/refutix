@@ -23,7 +23,7 @@ import io.fabric8.kubernetes.client.KubernetesClientBuilder;
 import org.apache.flink.kubernetes.operator.api.FlinkDeployment;
 import org.refutix.refutix.plugin.flink.session.FlinkSessionService;
 
-/** FlinkSessionService impl by flink k8s operator {@link FlinkSessionService} */
+/** FlinkSessionService impl by flink k8s operator {@link FlinkSessionService}. */
 public class FlinkKubernetesOperatorSessionService implements FlinkSessionService {
 
     private final KubernetesClient kubernetesClient;

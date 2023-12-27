@@ -18,5 +18,5 @@
 
 package org.refutix.refutix.plugin.flink.debugger;
 
-/** Flink Debugger Service Api */
+/** Flink Debugger Service Api. */
 public interface FlinkDebuggerService {}
