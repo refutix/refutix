@@ -28,13 +28,22 @@ under the License.
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>refutix-gateway</artifactId>
-    <name>Refutix : Gateway</name>
+    <artifactId>refutix-plugin</artifactId>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <name>Refutix : Plugin</name>
 
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>refutix-plugin-flink</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.auto.service</groupId>
+            <artifactId>auto-service</artifactId>
+            <version>${auto-service.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
