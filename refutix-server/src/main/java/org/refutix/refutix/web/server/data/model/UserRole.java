@@ -20,10 +20,12 @@ package org.refutix.refutix.web.server.data.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.relational.core.mapping.Table;
 
 /** user_role. */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "refutix_user_role_rel")
 public class UserRole extends BaseModel {
 
     /** user id. */

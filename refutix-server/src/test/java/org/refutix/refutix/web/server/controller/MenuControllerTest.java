@@ -19,13 +19,11 @@
 package org.refutix.refutix.web.server.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.refutix.refutix.web.server.data.model.SysRole;
-import org.refutix.refutix.web.server.data.result.PageR;
+import org.refutix.refutix.web.server.data.model.Menu;
 import org.refutix.refutix.web.server.data.result.R;
+import org.refutix.refutix.web.server.data.tree.TreeSelect;
+import org.refutix.refutix.web.server.data.vo.RoleMenuTreeselectVO;
 import org.refutix.refutix.web.server.util.ObjectMapperUtils;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,49 +32,24 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/** Test for SysRoleController. */
+/** Test for SysMenuController. */
 @SpringBootTest
 @AutoConfigureMockMvc
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class SysRoleControllerTest extends ControllerTestBase {
+public class MenuControllerTest extends ControllerTestBase {
 
-    private static final String rolePath = "/api/role";
-
-    private static final int roleId = 3;
-    private static final String roleName = "test";
+    private static final String menuPath = "/api/menu";
 
     @Test
-    @Order(1)
-    public void testAddRole() throws Exception {
-        SysRole sysRole = new SysRole();
-        sysRole.setId(roleId);
-        sysRole.setRoleName(roleName);
-        sysRole.setRoleKey(roleName);
-        sysRole.setSort(3);
-        sysRole.setEnabled(true);
-        sysRole.setIsDelete(false);
-        sysRole.setRemark(roleName);
-
-        mockMvc.perform(
-                        MockMvcRequestBuilders.post(rolePath)
-                                .cookie(cookie)
-                                .content(ObjectMapperUtils.toJSON(sysRole))
-                                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                                .accept(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
-    }
-
-    @Test
-    @Order(2)
-    public void testQueryRole() throws Exception {
-        String responseString =
+    public void testList() throws Exception {
+        String result =
                 mockMvc.perform(
-                                MockMvcRequestBuilders.get(rolePath + "/" + roleId)
+                                MockMvcRequestBuilders.get(menuPath + "/list")
                                         .cookie(cookie)
                                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                                         .accept(MediaType.APPLICATION_JSON_VALUE))
@@ -85,38 +58,17 @@ public class SysRoleControllerTest extends ControllerTestBase {
                         .andReturn()
                         .getResponse()
                         .getContentAsString();
-
-        R<SysRole> r =
-                ObjectMapperUtils.fromJSON(responseString, new TypeReference<R<SysRole>>() {});
+        R<List<Menu>> r = ObjectMapperUtils.fromJSON(result, new TypeReference<R<List<Menu>>>() {});
         assertEquals(200, r.getCode());
         assertNotNull(r.getData());
-        assertEquals(r.getData().getRoleName(), roleName);
+        assertTrue(r.getData().size() > 0);
     }
 
     @Test
-    @Order(3)
-    public void testEditRole() throws Exception {
-        String newRoleName = roleName + "-edit";
-        SysRole sysRole = new SysRole();
-        sysRole.setId(roleId);
-        sysRole.setRoleName(newRoleName);
-        sysRole.setRoleKey(newRoleName);
-        sysRole.setSort(3);
-        sysRole.setEnabled(true);
-        sysRole.setIsDelete(false);
-        sysRole.setRemark(newRoleName);
-
-        mockMvc.perform(
-                        MockMvcRequestBuilders.put(rolePath)
-                                .cookie(cookie)
-                                .content(ObjectMapperUtils.toJSON(sysRole))
-                                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                                .accept(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-
-        String responseString =
+    public void testGetInfo() throws Exception {
+        String result =
                 mockMvc.perform(
-                                MockMvcRequestBuilders.get(rolePath + "/" + roleId)
+                                MockMvcRequestBuilders.get(menuPath + "/1")
                                         .cookie(cookie)
                                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                                         .accept(MediaType.APPLICATION_JSON_VALUE))
@@ -125,20 +77,17 @@ public class SysRoleControllerTest extends ControllerTestBase {
                         .andReturn()
                         .getResponse()
                         .getContentAsString();
-
-        R<SysRole> r =
-                ObjectMapperUtils.fromJSON(responseString, new TypeReference<R<SysRole>>() {});
+        R<Menu> r = ObjectMapperUtils.fromJSON(result, new TypeReference<R<Menu>>() {});
         assertEquals(200, r.getCode());
         assertNotNull(r.getData());
-        assertEquals(r.getData().getRoleName(), newRoleName);
+        assertEquals(1, (int) r.getData().getId());
     }
 
     @Test
-    @Order(5)
-    public void testDeleteRole() throws Exception {
-        String delResponseString =
+    public void testGetTreeselect() throws Exception {
+        String result =
                 mockMvc.perform(
-                                MockMvcRequestBuilders.delete(rolePath + "/" + roleId)
+                                MockMvcRequestBuilders.get(menuPath + "/treeselect")
                                         .cookie(cookie)
                                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                                         .accept(MediaType.APPLICATION_JSON_VALUE))
@@ -147,17 +96,18 @@ public class SysRoleControllerTest extends ControllerTestBase {
                         .andReturn()
                         .getResponse()
                         .getContentAsString();
-
-        R<?> result = ObjectMapperUtils.fromJSON(delResponseString, R.class);
-        assertEquals(200, result.getCode());
+        R<List<TreeSelect>> r =
+                ObjectMapperUtils.fromJSON(result, new TypeReference<R<List<TreeSelect>>>() {});
+        assertEquals(200, r.getCode());
+        assertNotNull(r.getData());
+        assertTrue(r.getData().size() > 0);
     }
 
     @Test
-    @Order(4)
-    public void testGetRoleList() throws Exception {
-        String responseString =
+    public void testGetRoleMenuTreeselect() throws Exception {
+        String result =
                 mockMvc.perform(
-                                MockMvcRequestBuilders.get(rolePath + "/list")
+                                MockMvcRequestBuilders.get(menuPath + "/roleMenuTreeselect/1")
                                         .cookie(cookie)
                                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                                         .accept(MediaType.APPLICATION_JSON_VALUE))
@@ -166,12 +116,11 @@ public class SysRoleControllerTest extends ControllerTestBase {
                         .andReturn()
                         .getResponse()
                         .getContentAsString();
-
-        PageR<?> r = ObjectMapperUtils.fromJSON(responseString, PageR.class);
-        assertNotNull(r);
-        assertTrue(
-                r.getData() != null
-                        && ((r.getTotal() > 0 && r.getData().size() > 0)
-                                || (r.getTotal() == 0 && r.getData().size() == 0)));
+        R<RoleMenuTreeselectVO> r =
+                ObjectMapperUtils.fromJSON(result, new TypeReference<R<RoleMenuTreeselectVO>>() {});
+        assertEquals(200, r.getCode());
+        assertNotNull(r.getData());
+        assertNotNull(r.getData().getMenus());
+        assertNotNull(r.getData().getCheckedKeys());
     }
 }

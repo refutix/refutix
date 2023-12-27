@@ -22,10 +22,12 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.refutix.refutix.web.server.constant.Constants;
+import org.springframework.data.relational.core.mapping.Table;
 
 /** user table model. */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "refutix_user")
 public class User extends BaseModel {
 
     private static final long serialVersionUID = 1L;

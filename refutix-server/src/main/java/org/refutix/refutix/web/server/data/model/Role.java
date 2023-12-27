@@ -18,18 +18,48 @@
 
 package org.refutix.refutix.web.server.data.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.relational.core.mapping.Table;
 
-/** role_menu table. */
+import java.util.Set;
+
+/** sys_role. */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class RoleMenu extends BaseModel {
-    /** role id. */
-    private Integer roleId;
+@Table(name = "refutix_role")
+public class Role extends BaseModel {
+    /** role name. */
+    private String roleName;
 
-    /** menu id. */
-    private Integer menuId;
+    /** role key. */
+    private String roleKey;
+
+    /** sort. */
+    private Integer sort;
+
+    /** is enable. */
+    private Boolean enabled;
+
+    /** is delete. */
+    @TableLogic private Boolean isDelete;
+
+    /** remark. */
+    private String remark;
+
+    /** Does the user have this role identity. Default false. */
+    @TableField(exist = false)
+    private boolean flag = false;
+
+    /** menu ids. */
+    @TableField(exist = false)
+    private Integer[] menuIds;
+
+    /** Role menu permissions. */
+    @TableField(exist = false)
+    private Set<String> permissions;
 
     private static final long serialVersionUID = 1L;
 }

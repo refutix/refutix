@@ -19,45 +19,66 @@
 package org.refutix.refutix.web.server.data.model;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-/** sys_role. */
+/** sys_menu table. */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysRole extends BaseModel {
-    /** role name. */
-    private String roleName;
+@Table(name = "refutix_menu")
+public class Menu extends BaseModel {
+    /** menu name. */
+    private String menuName;
 
-    /** role key. */
-    private String roleKey;
+    /** parent id. */
+    private Integer parentId;
 
     /** sort. */
     private Integer sort;
+
+    /** route path. */
+    private String path;
+
+    /** route params. */
+    private String query;
+
+    /** is cache（0:cache 1:no_cache）. */
+    private Integer isCache;
+
+    /** menu type（M:directory C:menu F:button）. */
+    private String type;
+
+    /** is visible（0:display 1:hide）. */
+    private String visible;
+
+    /** component path. */
+    private String component;
+
+    /** is frame. */
+    private Integer isFrame;
 
     /** is enable. */
     private Boolean enabled;
 
     /** is delete. */
-    @TableLogic private Boolean isDelete;
+    private Boolean isDelete;
+
+    /** menu perms. */
+    private String perms;
+
+    /** menu icon. */
+    private String icon;
 
     /** remark. */
     private String remark;
 
-    /** Does the user have this role identity. Default false. */
+    /** children menu. */
     @TableField(exist = false)
-    private boolean flag = false;
-
-    /** menu ids. */
-    @TableField(exist = false)
-    private Integer[] menuIds;
-
-    /** Role menu permissions. */
-    @TableField(exist = false)
-    private Set<String> permissions;
+    private List<Menu> children = new ArrayList<Menu>();
 
     private static final long serialVersionUID = 1L;
 }

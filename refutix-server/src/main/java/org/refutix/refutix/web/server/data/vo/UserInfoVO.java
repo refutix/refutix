@@ -20,8 +20,8 @@ package org.refutix.refutix.web.server.data.vo;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import lombok.Data;
-import org.refutix.refutix.web.server.data.model.SysMenu;
-import org.refutix.refutix.web.server.data.model.SysRole;
+import org.refutix.refutix.web.server.data.model.Menu;
+import org.refutix.refutix.web.server.data.model.Role;
 import org.refutix.refutix.web.server.data.model.Tenant;
 import org.refutix.refutix.web.server.data.model.User;
 
@@ -38,13 +38,13 @@ public class UserInfoVO {
     private List<Tenant> tenantList;
 
     /** current user's role list. */
-    private List<SysRole> roleList;
+    private List<Role> roleList;
 
     /** current user's token info. */
     private SaTokenInfo saTokenInfo;
 
     /** current user's menu list. */
-    private List<SysMenu> sysMenuList;
+    private List<Menu> menuList;
 
     /** current user's tenant. */
     private Tenant currentTenant;

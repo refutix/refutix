@@ -13,8 +13,8 @@
 --  See the License for the specific language governing permissions and
 --  limitations under the License.
 
-DROP TABLE IF EXISTS `t_r_user`;
-CREATE TABLE if not exists `user`
+DROP TABLE IF EXISTS `refutix_user`;
+CREATE TABLE if not exists `refutix_user`
 (
     `id`          int(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
     `username`    varchar(50)  NOT NULL COMMENT 'username',
@@ -30,8 +30,8 @@ CREATE TABLE if not exists `user`
     `update_time` datetime(0)  NULL     DEFAULT CURRENT_TIMESTAMP COMMENT 'update time'
     ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `tenant`;
-CREATE TABLE if not exists `tenant`
+DROP TABLE IF EXISTS `refutix_tenant`;
+CREATE TABLE if not exists `refutix_tenant`
 (
     `id`          int(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
     `name`        varchar(64)  NULL     DEFAULT NULL COMMENT 'tenant name',
@@ -41,8 +41,8 @@ CREATE TABLE if not exists `tenant`
     `update_time` datetime(0)  NULL     DEFAULT CURRENT_TIMESTAMP COMMENT 'update time'
     ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `user_tenant`;
-CREATE TABLE if not exists `user_tenant`
+DROP TABLE IF EXISTS `refutix_user_tenant_rel`;
+CREATE TABLE if not exists `refutix_user_tenant_rel`
 (
     `id`          int(11)     NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
     `user_id`     int(11)     NOT NULL COMMENT 'user id',
@@ -51,8 +51,8 @@ CREATE TABLE if not exists `user_tenant`
     `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'update time'
     ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sys_role`;
-CREATE TABLE if not exists `sys_role`
+DROP TABLE IF EXISTS `refutix_role`;
+CREATE TABLE if not exists `refutix_role`
 (
     `id`          int(11)      not null auto_increment primary key comment 'id',
     `role_name`   varchar(30)  not null comment 'role name',
@@ -65,8 +65,8 @@ CREATE TABLE if not exists `sys_role`
     `update_time` datetime(0)  NULL     DEFAULT CURRENT_TIMESTAMP COMMENT 'update time'
     ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sys_menu`;
-CREATE TABLE if not exists `sys_menu`
+DROP TABLE IF EXISTS `refutix_menu`;
+CREATE TABLE if not exists `refutix_menu`
 (
     `id`          int(11)  not null auto_increment primary key comment 'id',
     `menu_name`   varchar(50) not null comment 'menu name',
@@ -88,8 +88,8 @@ CREATE TABLE if not exists `sys_menu`
     `update_time` datetime(0) NULL     DEFAULT CURRENT_TIMESTAMP COMMENT 'update time'
     ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `user_role`;
-CREATE TABLE if not exists `user_role`
+DROP TABLE IF EXISTS `refutix_user_role_rel`;
+CREATE TABLE if not exists `refutix_user_role_rel`
 (
     `id`          int(11)     not null auto_increment primary key comment 'id',
     `user_id`     int(11)     not null comment 'user id',
@@ -99,8 +99,8 @@ CREATE TABLE if not exists `user_role`
     unique key `idx_user_role` (`user_id`, `role_id`)
     ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `role_menu`;
-CREATE TABLE if not exists `role_menu`
+DROP TABLE IF EXISTS `refutix_role_menu_rel`;
+CREATE TABLE if not exists `refutix_role_menu_rel`
 (
     `id`          int(11)     not null auto_increment primary key comment 'id',
     `role_id`     int(11)     not null comment 'role id',
@@ -110,8 +110,8 @@ CREATE TABLE if not exists `role_menu`
     unique key `idx_role_menu` (`role_id`, `menu_id`)
     )  ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `catalog`;
-CREATE TABLE if not exists `catalog`
+DROP TABLE IF EXISTS `refutix_catalog`;
+CREATE TABLE if not exists `refutix_catalog`
 (
     id            int                                  not null comment 'id'
     primary key,
@@ -127,24 +127,24 @@ CREATE TABLE if not exists `catalog`
     ) engine = innodb;
 
 
-INSERT INTO `user` ( id, username, password, nickname, mobile
+INSERT INTO `refutix_user` ( id, username, password, nickname, mobile
                    , email, enabled, is_delete)
 VALUES ( 1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin', 0
        , 'admin@refutix.com', 1, 0);
-INSERT INTO `user` (id, username, password, nickname, mobile, email, enabled, is_delete)
+INSERT INTO `refutix_user` (id, username, password, nickname, mobile, email, enabled, is_delete)
 VALUES (2, 'common', '21232f297a57a5a743894a0e4a801fc3', 'common', 0, 'common@refutix.com', 1, 0);
 
-INSERT INTO `tenant` (id, name, description)
+INSERT INTO `refutix_tenant` (id, name, description)
 VALUES (1, 'DefaultTenant', 'DefaultTenant');
 
-INSERT INTO `user_tenant` (`id`, `user_id`, `tenant_id`)
+INSERT INTO `refutix_user_tenant` (`id`, `user_id`, `tenant_id`)
 VALUES (1, 1, 1);
 
-insert into sys_role (id, role_name, role_key, sort)
+insert into `refutix_role` (id, role_name, role_key, sort)
 values (1, 'admin', 'admin', 1),
        (2, 'common', 'common', 2);
 
-insert into sys_menu (id, menu_name, parent_id, sort, path, component, is_frame, type, perms, icon, remark)
+insert into `refutix_menu` (id, menu_name, parent_id, sort, path, component, is_frame, type, perms, icon, remark)
 values (1, 'all', 0, 1, 'system', null, 1, 'M', 'system', 'admin', 'system root path'),
        (100, 'user manager', 1, 1, 'user', 'user/index', 1, 'C', 'system:user:list', 'user', 'user manager'),
        (1000, 'user query', 100, 1, '', '', 1, 'F', 'system:user:query', '#', ''),
@@ -163,10 +163,10 @@ values (1, 'all', 0, 1, 'system', null, 1, 'M', 'system', 'admin', 'system root 
        (3002, 'menu edit', 300, 3, '', '', 1, 'F', 'system:menu:edit', '#', ''),
        (3003, 'menu del', 300, 4, '', '', 1, 'F', 'system:menu:remove', '#', '');
 
-insert into user_role (id, user_id, role_id)
+insert into refutix_user_role_rel (id, user_id, role_id)
 values (1, 1, 1), (2, 2, 2);
 
-insert into role_menu (role_id, menu_id)
+insert into refutix_role_menu_rel (role_id, menu_id)
 values (1, 1),
        (1, 100),
        (1, 1000),

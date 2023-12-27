@@ -21,10 +21,12 @@ package org.refutix.refutix.web.server.data.model;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.relational.core.mapping.Table;
 
 /** tenant use to isolate data. */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "refutix_tenant")
 public class Tenant extends BaseModel {
 
     private static final long serialVersionUID = 1L;

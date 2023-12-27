@@ -19,7 +19,7 @@
 package org.refutix.refutix.web.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.refutix.refutix.web.server.data.model.SysMenu;
+import org.refutix.refutix.web.server.data.model.Menu;
 import org.refutix.refutix.web.server.data.tree.TreeSelect;
 import org.refutix.refutix.web.server.data.vo.RouterVO;
 
@@ -27,13 +27,13 @@ import java.util.List;
 import java.util.Set;
 
 /** Menu service. */
-public interface SysMenuService extends IService<SysMenu> {
+public interface SysMenuService extends IService<Menu> {
     /**
      * Query menu list by user.
      *
      * @return menu list
      */
-    List<SysMenu> selectMenuList();
+    List<Menu> selectMenuList();
 
     /**
      * Query menu list.
@@ -41,7 +41,7 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param menu query params
      * @return menu list
      */
-    List<SysMenu> selectMenuList(SysMenu menu);
+    List<Menu> selectMenuList(Menu menu);
 
     /**
      * Query permissions by user ID.
@@ -65,7 +65,7 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param userId user ID
      * @return menu list
      */
-    List<SysMenu> selectMenuTreeByUserId(Integer userId);
+    List<Menu> selectMenuTreeByUserId(Integer userId);
 
     /**
      * Query menu tree information by role ID.
@@ -81,7 +81,7 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param menus menu list
      * @return router list
      */
-    List<RouterVO> buildMenus(List<SysMenu> menus);
+    List<RouterVO> buildMenus(List<Menu> menus);
 
     /**
      * Builder menu tree.
@@ -89,7 +89,7 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param menus menu list
      * @return menu tree
      */
-    List<SysMenu> buildMenuTree(List<SysMenu> menus);
+    List<Menu> buildMenuTree(List<Menu> menus);
 
     /**
      * Builder tree select by menu.
@@ -97,7 +97,7 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param menus menu list
      * @return menu tree select
      */
-    List<TreeSelect> buildMenuTreeSelect(List<SysMenu> menus);
+    List<TreeSelect> buildMenuTreeSelect(List<Menu> menus);
 
     /**
      * Query menu info by menu ID.
@@ -105,7 +105,7 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param menuId menu ID
      * @return menu info
      */
-    SysMenu selectMenuById(Integer menuId);
+    Menu selectMenuById(Integer menuId);
 
     /**
      * Is there a menu sub node present.
@@ -129,7 +129,7 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param menu menu info
      * @return result
      */
-    boolean insertMenu(SysMenu menu);
+    boolean insertMenu(Menu menu);
 
     /**
      * Update menu.
@@ -137,7 +137,7 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param menu menu info
      * @return result
      */
-    boolean updateMenu(SysMenu menu);
+    boolean updateMenu(Menu menu);
 
     /**
      * Delete menu.
@@ -153,5 +153,5 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param menu menu info
      * @return result
      */
-    boolean checkMenuNameUnique(SysMenu menu);
+    boolean checkMenuNameUnique(Menu menu);
 }
