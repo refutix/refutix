@@ -20,7 +20,7 @@ package org.refutix.refutix.plugin.flink.common;
 
 import java.util.Properties;
 
-/** Common service factory */
+/** Common service factory. */
 public interface FlinkCommonPluginServiceFactory<T> extends FlinkMultiVersionSupport {
 
     String name();

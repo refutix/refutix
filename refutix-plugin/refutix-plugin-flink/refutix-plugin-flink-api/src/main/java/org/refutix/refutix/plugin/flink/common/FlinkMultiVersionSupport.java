@@ -18,7 +18,7 @@
 
 package org.refutix.refutix.plugin.flink.common;
 
-/** FlinkMultiVersionSupport */
+/** FlinkMultiVersionSupport. */
 public interface FlinkMultiVersionSupport {
 
     boolean flinkVersionMatch(String flinkVersion);
