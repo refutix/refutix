@@ -28,7 +28,7 @@ under the License.
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <name>Refutix: Flink Kubernetes Operator Plugin</name>
+    <name>Refutix : Plugin : Flink : Kubernetes : Operator</name>
     <artifactId>refutix-plugin-flink-kubernetes-operator</artifactId>
 
 

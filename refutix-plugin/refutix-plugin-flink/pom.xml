@@ -29,9 +29,7 @@ under the License.
     </parent>
 
     <artifactId>refutix-plugin-flink</artifactId>
-
-    <name>Refutix: Flink plugin</name>
-
+    <name>Refutix : Plugin : Flink</name>
     <packaging>pom</packaging>
 
     <modules>
