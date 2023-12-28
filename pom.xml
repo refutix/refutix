@@ -72,12 +72,12 @@ under the License.
         <spring-boot-dependencies.version>2.7.11</spring-boot-dependencies.version>
         <maven.resource.version>3.2.0</maven.resource.version>
         <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <target.java.version>1.8</target.java.version>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <target.java.version>11</target.java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit5.version>5.8.1</junit5.version>
         <assertj.version>3.23.1</assertj.version>
