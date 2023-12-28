@@ -17,6 +17,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -24,35 +25,22 @@ under the License.
 
     <parent>
         <groupId>org.refutix</groupId>
-        <artifactId>refutix-plugin-flink</artifactId>
+        <artifactId>refutix-plugin-flink-kubernetes-operator</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <name>Refutix : Plugin : Flink : Kubernetes : Operator</name>
-    <artifactId>refutix-plugin-flink-kubernetes-operator</artifactId>
+    <artifactId>refutix-plugin-flink-kubernetes-operator-1.6.0</artifactId>
 
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>refutix-plugin-flink-kubernetes-operator-1.6.0</module>
-    </modules>
+    <properties>
+        <flink-kubernetes-operator.version>1.6.0</flink-kubernetes-operator.version>
+    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.refutix</groupId>
-            <artifactId>refutix-plugin-flink-api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.fabric8</groupId>
-            <artifactId>kubernetes-client</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.squareup.okhttp3</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-kubernetes-operator-api</artifactId>
+            <version>${flink-kubernetes-operator.version}</version>
         </dependency>
     </dependencies>
-
+    
 </project>
