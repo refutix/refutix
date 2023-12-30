@@ -49,7 +49,7 @@ under the License.
 
         <dependency>
             <groupId>org.refutix</groupId>
-            <artifactId>refutix-plugin-flink</artifactId>
+            <artifactId>refutix-plugin-flink-sqlgateway</artifactId>
             <version>${project.version}</version>
         </dependency>
 

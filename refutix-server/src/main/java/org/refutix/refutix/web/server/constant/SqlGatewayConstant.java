@@ -21,7 +21,8 @@ package org.refutix.refutix.web.server.constant;
 /** Sql gateway constant. */
 public class SqlGatewayConstant {
 
-    public static final String SQL_GATEWAY_ENDPOINT_REST_ADDRESS = "sql-gateway.endpoint.rest.address";
+    public static final String SQL_GATEWAY_ENDPOINT_REST_ADDRESS =
+            "sql-gateway.endpoint.rest.address";
     public static final String SQL_GATEWAY_ENDPOINT_REST_PORT = "sql-gateway.endpoint.rest.port";
     public static final String SQL_GATEWAY_ENDPOINT_REST_BIND_PORT =
             "sql-gateway.endpoint.rest.bind-port";

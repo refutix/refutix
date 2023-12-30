@@ -28,9 +28,7 @@ under the License.
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <name>Refutix : Plugin : Flink : Api</name>
-
     <artifactId>refutix-plugin-flink-api</artifactId>
-
+    <name>Refutix : Plugin : Flink : Api</name>
 
 </project>
