@@ -116,6 +116,7 @@ under the License.
         <gson.version>2.10.1</gson.version>
         <auto-service.version>1.0.1</auto-service.version>
         <fabric8.version>6.7.0</fabric8.version>
+        <joor.version>0.9.14</joor.version>
     </properties>
 
     <dependencyManagement>
@@ -224,16 +225,24 @@ under the License.
                 <artifactId>springdoc-openapi-ui</artifactId>
                 <version>${springdoc-openapi-ui.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.google.auto.service</groupId>
                 <artifactId>auto-service</artifactId>
                 <version>${auto-service.version}</version>
                 <scope>provided</scope>
             </dependency>
+
             <dependency>
                 <groupId>io.fabric8</groupId>
                 <artifactId>kubernetes-client</artifactId>
                 <version>${fabric8.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jooq</groupId>
+                <artifactId>joor</artifactId>
+                <version>0.9.14</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
