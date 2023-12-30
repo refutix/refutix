@@ -21,25 +21,25 @@ package org.refutix.refutix.web.server.constant;
 /** Sql gateway constant. */
 public class SqlGatewayConstant {
 
-    public static String SQL_GATEWAY_ENDPOINT_REST_ADDRESS = "sql-gateway.endpoint.rest.address";
-    public static String SQL_GATEWAY_ENDPOINT_REST_PORT = "sql-gateway.endpoint.rest.port";
-    public static String SQL_GATEWAY_ENDPOINT_REST_BIND_PORT =
+    public static final String SQL_GATEWAY_ENDPOINT_REST_ADDRESS = "sql-gateway.endpoint.rest.address";
+    public static final String SQL_GATEWAY_ENDPOINT_REST_PORT = "sql-gateway.endpoint.rest.port";
+    public static final String SQL_GATEWAY_ENDPOINT_REST_BIND_PORT =
             "sql-gateway.endpoint.rest.bind-port";
-    public static String SQL_GATEWAY_ENDPOINT_REST_BIND_ADDRESS =
+    public static final String SQL_GATEWAY_ENDPOINT_REST_BIND_ADDRESS =
             "sql-gateway.endpoint.rest.bind-addresss";
 
-    public static String ADDRESS = "127.0.0.1";
-    public static int PORT = 8083;
-    public static String BIND_PORT = "8083";
+    public static final String ADDRESS = "127.0.0.1";
+    public static final int PORT = 8083;
+    public static final String BIND_PORT = "8083";
 
-    public static long SESSION_CHECK_INTERVAL = 0;
-    public static long SESSION_IDLE_TIMEOUT = 0;
-    public static int SESSION_MAX_NUM = 1000000;
+    public static final long SESSION_CHECK_INTERVAL = 0;
+    public static final long SESSION_IDLE_TIMEOUT = 0;
+    public static final int SESSION_MAX_NUM = 1000000;
 
-    public static long WORKER_KEEPALIVE_TIME = 5;
-    public static int MAX_THREADS = 500;
-    public static int MIN_THREADS = 5;
+    public static final long WORKER_KEEPALIVE_TIME = 5;
+    public static final int MAX_THREADS = 500;
+    public static final int MIN_THREADS = 5;
 
-    public static int MONITOR_DELAY = 0;
-    public static int MONITOR_PERIOD = 10;
+    public static final int MONITOR_DELAY = 0;
+    public static final int MONITOR_PERIOD = 10;
 }
