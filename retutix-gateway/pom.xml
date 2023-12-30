@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>retutix-gateway</artifactId>
+    <name>Refutix : Gateway</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
