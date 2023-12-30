@@ -28,10 +28,10 @@ import org.apache.paimon.types.DataType;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-import org.refutix.refutix.api.table.TableChange;
 import org.refutix.refutix.api.exception.ColumnException;
 import org.refutix.refutix.api.exception.DatabaseException;
 import org.refutix.refutix.api.exception.TableException;
+import org.refutix.refutix.api.table.TableChange;
 import org.refutix.refutix.api.table.metadata.ColumnMetadata;
 import org.refutix.refutix.api.table.metadata.TableMetadata;
 

@@ -20,10 +20,10 @@ package org.refutix.refutix.server.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.Test;
-import org.refutix.refutix.server.data.vo.RoleMenuTreeselectVO;
 import org.refutix.refutix.server.data.model.Menu;
 import org.refutix.refutix.server.data.result.R;
 import org.refutix.refutix.server.data.tree.TreeSelect;
+import org.refutix.refutix.server.data.vo.RoleMenuTreeselectVO;
 import org.refutix.refutix.server.util.ObjectMapperUtils;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
