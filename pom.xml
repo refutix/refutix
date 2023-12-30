@@ -27,7 +27,6 @@ under the License.
         <module>refutix-common</module>
         <module>refutix-api</module>
         <module>refutix-plugin</module>
-        <module>retutix-gateway</module>
     </modules>
 
     <parent>
