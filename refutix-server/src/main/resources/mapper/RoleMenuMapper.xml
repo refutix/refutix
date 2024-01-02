@@ -20,9 +20,9 @@ under the License.
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.refutix.refutix.web.server.mapper.RoleMenuMapper">
+<mapper namespace="org.refutix.refutix.server.mapper.RoleMenuMapper">
 
-	<resultMap type="org.refutix.refutix.web.server.data.model.RoleMenuRel" id="SysRoleMenuResult">
+	<resultMap type="org.refutix.refutix.server.data.model.RoleMenuRel" id="SysRoleMenuResult">
 		<result property="id"         column="id"           />
 		<result property="roleId"     column="role_id"      />
 		<result property="menuId"     column="menu_id"      />

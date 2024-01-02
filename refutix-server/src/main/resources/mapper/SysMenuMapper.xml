@@ -20,9 +20,9 @@ under the License.
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.refutix.refutix.web.server.mapper.SysMenuMapper">
+<mapper namespace="org.refutix.refutix.server.mapper.SysMenuMapper">
 
-	<resultMap type="org.refutix.refutix.web.server.data.model.Menu" id="SysMenuResult">
+	<resultMap type="org.refutix.refutix.server.data.model.Menu" id="SysMenuResult">
 		<id     property="id"         column="id"        />
 		<result property="menuName"       column="menu_name"      />
 		<result property="parentId"       column="parent_id"      />
@@ -47,7 +47,7 @@ under the License.
 		from sys_menu
     </sql>
     
-    <select id="selectMenuList" parameterType="org.refutix.refutix.web.server.data.model.Menu" resultMap="SysMenuResult">
+    <select id="selectMenuList" parameterType="org.refutix.refutix.server.data.model.Menu" resultMap="SysMenuResult">
 		<include refid="selectMenuVo"/>
 		<where>
 			<if test="menu.menuName != null and menu.menuName != ''">
@@ -139,7 +139,7 @@ under the License.
 	    select count(1) from sys_menu where parent_id = #{menuId} limit 1
 	</select>
 	
-	<select id="checkMenuNameUnique" parameterType="org.refutix.refutix.web.server.data.model.Menu" resultMap="SysMenuResult">
+	<select id="checkMenuNameUnique" parameterType="org.refutix.refutix.server.data.model.Menu" resultMap="SysMenuResult">
 		<include refid="selectMenuVo"/>
 		where menu_name=#{menuName} and parent_id = #{parentId} limit 1
 	</select>
