@@ -20,9 +20,9 @@ under the License.
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.refutix.refutix.web.server.mapper.SysRoleMapper">
+<mapper namespace="org.refutix.refutix.server.mapper.SysRoleMapper">
 
-	<resultMap type="org.refutix.refutix.web.server.data.model.Role" id="SysRoleResult">
+	<resultMap type="org.refutix.refutix.server.data.model.Role" id="SysRoleResult">
 		<id     property="id"             	  column="id"               />
 		<result property="roleName"           column="role_name"             />
 		<result property="roleKey"            column="role_key"              />
@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        left join user u on u.id = urole.user_id
     </sql>
     
-    <select id="selectRoleList" parameterType="org.refutix.refutix.web.server.data.model.Role" resultMap="SysRoleResult">
+    <select id="selectRoleList" parameterType="org.refutix.refutix.server.data.model.Role" resultMap="SysRoleResult">
 		<include refid="selectRoleVo"/>
 		where r.is_delete = '0'
 		<if test="role.id != null and role.id != 0">

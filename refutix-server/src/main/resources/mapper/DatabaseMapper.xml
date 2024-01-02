@@ -21,9 +21,9 @@ under the License.
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.refutix.refutix.web.server.mapper.DatabaseMapper">
+<mapper namespace="org.refutix.refutix.server.mapper.DatabaseMapper">
 
-    <resultMap type="org.refutix.refutix.web.server.data.vo.DatabaseVO" id="BaseResultMap">
+    <resultMap type="org.refutix.refutix.server.data.vo.DatabaseVO" id="BaseResultMap">
         <id property="id" column="id" />
         <result property="name" column="database_name" />
         <result property="catalogId" column="catalog_id" />
