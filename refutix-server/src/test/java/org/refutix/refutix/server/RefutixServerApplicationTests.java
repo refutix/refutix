@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-package org.refutix.refutix.web.server;
+package org.refutix.refutix.server;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
 /** Paimon Web Server Application Tests. */
 @SpringBootTest
-class PaimonWebServerApplicationTests {}
+class RefutixServerApplicationTests {}
