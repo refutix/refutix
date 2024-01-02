@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-package org.refutix.refutix.web.server.sqlgateway.event;
+package org.refutix.refutix.server.sqlgateway.event;
 
 import lombok.Getter;
-import org.refutix.refutix.web.common.sqlgateway.SqlGatewayOperation;
-import org.refutix.refutix.web.common.sqlgateway.SqlGatewaySession;
+import org.refutix.refutix.common.sqlgateway.SqlGatewayOperation;
+import org.refutix.refutix.common.sqlgateway.SqlGatewaySession;
 import org.springframework.context.ApplicationEvent;
 
 import java.util.List;

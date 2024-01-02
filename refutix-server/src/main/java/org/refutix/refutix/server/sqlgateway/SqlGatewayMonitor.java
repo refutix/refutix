@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.refutix.refutix.web.server.sqlgateway;
+package org.refutix.refutix.server.sqlgateway;
 
 import org.apache.flink.table.gateway.SqlGateway;
 import org.apache.flink.table.gateway.api.operation.OperationHandle;
@@ -26,9 +26,9 @@ import org.apache.flink.table.gateway.service.operation.OperationManager;
 import org.apache.flink.table.gateway.service.session.Session;
 import org.apache.flink.table.gateway.service.session.SessionManagerImpl;
 import org.joor.Reflect;
-import org.refutix.refutix.web.common.sqlgateway.SqlGatewayOperation;
-import org.refutix.refutix.web.common.sqlgateway.SqlGatewaySession;
-import org.refutix.refutix.web.server.sqlgateway.event.SqlGatewayEvent;
+import org.refutix.refutix.common.sqlgateway.SqlGatewayOperation;
+import org.refutix.refutix.common.sqlgateway.SqlGatewaySession;
+import org.refutix.refutix.server.sqlgateway.event.SqlGatewayEvent;
 import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.List;

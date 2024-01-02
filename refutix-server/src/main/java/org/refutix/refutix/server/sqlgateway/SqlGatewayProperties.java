@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-package org.refutix.refutix.web.server.sqlgateway;
+package org.refutix.refutix.server.sqlgateway;
 
 import lombok.Data;
 import org.apache.flink.table.gateway.api.config.SqlGatewayServiceConfigOptions;
-import org.refutix.refutix.web.server.constant.SqlGatewayConstant;
+import org.refutix.refutix.server.constant.SqlGatewayConstant;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.time.Duration;

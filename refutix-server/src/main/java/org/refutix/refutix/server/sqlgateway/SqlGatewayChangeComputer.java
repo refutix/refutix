@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-package org.refutix.refutix.web.server.sqlgateway;
+package org.refutix.refutix.server.sqlgateway;
 
-import org.refutix.refutix.web.common.sqlgateway.SqlGatewayOperation;
-import org.refutix.refutix.web.common.sqlgateway.SqlGatewaySession;
+import org.refutix.refutix.common.sqlgateway.SqlGatewayOperation;
+import org.refutix.refutix.common.sqlgateway.SqlGatewaySession;
 
 import java.util.HashMap;
 import java.util.List;

@@ -16,21 +16,22 @@
  * limitations under the License.
  */
 
-package org.refutix.refutix.web.common.sqlgateway;
+package org.refutix.refutix.server.sqlgateway.listener;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import org.refutix.refutix.common.sqlgateway.SqlGatewayOperation;
+import org.refutix.refutix.common.sqlgateway.SqlGatewaySession;
+import org.refutix.refutix.server.sqlgateway.event.SqlGatewayEvent;
+import org.springframework.stereotype.Component;
 
-import java.util.UUID;
+import java.util.List;
+import java.util.Map;
 
-/** Represents a session for the SQL Gateway. */
-@Data
-@Builder
-@ToString
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class SqlGatewaySession {
-
-    @EqualsAndHashCode.Include private UUID id;
+/** Sql gateway event listener implement. */
+@Component
+public class SqlGatawayEventListenerImpl implements SqlGatewayEventListener {
+    @Override
+    public void onApplicationEvent(SqlGatewayEvent event) {
+        Map<SqlGatewaySession, List<SqlGatewayOperation>> changes = event.getChanged();
+        // TODO
+    }
 }

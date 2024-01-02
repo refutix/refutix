@@ -20,7 +20,7 @@ package org.refutix.refutix.server;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.flink.table.gateway.SqlGateway;
-import org.refutix.refutix.web.server.sqlgateway.SqlGatewayMonitor;
+import org.refutix.refutix.server.sqlgateway.SqlGatewayMonitor;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
