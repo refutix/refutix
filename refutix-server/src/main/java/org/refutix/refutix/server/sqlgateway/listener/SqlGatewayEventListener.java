@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-package org.refutix.refutix.web.server;
+package org.refutix.refutix.server.sqlgateway.listener;
 
-import org.springframework.boot.test.context.SpringBootTest;
+import org.refutix.refutix.server.sqlgateway.event.SqlGatewayEvent;
+import org.springframework.context.ApplicationListener;
 
-/** Paimon Web Server Application Tests. */
-@SpringBootTest
-class PaimonWebServerApplicationTests {}
+/** Sql gateway event listener interface. */
+public interface SqlGatewayEventListener extends ApplicationListener<SqlGatewayEvent> {}

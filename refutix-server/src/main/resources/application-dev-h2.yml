@@ -24,7 +24,7 @@ spring:
     password: root
   sql:
     init:
-      data-locations: classpath:sql/refutix-mysql.sql
+      data-locations: classpath:db/ddl-h2.sql
       continue-on-error: true
       username: root
       password: root

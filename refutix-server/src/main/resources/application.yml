@@ -22,7 +22,7 @@ spring:
   application:
     name: refutix
   profiles:
-    active: dev-mysql
+    active: dev-h2
   messages:
     basename: i18n/messages
     encoding: UTF-8
