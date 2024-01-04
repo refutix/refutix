@@ -82,6 +82,48 @@ export default defineComponent({
       tabData.value = data
     })
 
+    const menuTreeWidth = ref('20%');
+    const isResizing = ref(false);
+
+    const startMenuTreeResize = (event: MouseEvent) => {
+      isResizing.value = true;
+      event.preventDefault();
+    };
+
+    const doMenuTreeResize = (event: MouseEvent) => {
+      if (isResizing.value) {
+        const parentWidth = document.documentElement.clientWidth;
+        let newWidth = event.clientX;
+
+        let widthInPercent = (newWidth / parentWidth) * 100;
+
+        widthInPercent = Math.max(15, Math.min(widthInPercent, 30));
+
+        menuTreeWidth.value = `${widthInPercent}%`;
+      }
+    };
+
+    const stopMenuTreeResize = () => {
+      isResizing.value = false;
+    };
+
+    onMounted(() => {
+      document.addEventListener('mousemove', doMenuTreeResize);
+      document.addEventListener('mouseup', stopMenuTreeResize);
+    });
+
+    onBeforeUnmount(() => {
+      document.removeEventListener('mousemove', doMenuTreeResize);
+      document.removeEventListener('mouseup', stopMenuTreeResize);
+    });
+
+    const editorAreaStyle = computed(() => {
+      const menuWidthPercent = parseFloat(menuTreeWidth.value);
+      return {
+        width: `calc(100% - ${menuWidthPercent}%)`
+      };
+    });
+
     return {
       ...toRefs(editorVariables),
       editorMounted,
@@ -91,16 +133,20 @@ export default defineComponent({
       tabData,
       handleConsoleUp,
       handleConsoleDown,
-      consoleHeightType
+      consoleHeightType,
+      menuTreeWidth,
+      startMenuTreeResize,
+      editorAreaStyle
     }
   },
   render() {
     return (
       <div class={styles.query}>
-        <div class={styles['menu-tree']}>
+        <div class={styles['menu-tree']} style={{ width: this.menuTreeWidth }}>
           <MenuTree />
         </div>
-        <div class={styles['editor-area']}>
+        <div class={styles.splitter} onMousedown={this.startMenuTreeResize}></div>
+        <div class={styles['editor-area']} style={this.editorAreaStyle}>
           <n-card class={styles.card} content-style={'padding: 5px 18px;display: flex;flex-direction: column;'}>
             <div class={styles.tabs}>
               <EditorTabs />
@@ -108,7 +154,7 @@ export default defineComponent({
             <div class={styles.debugger}>
               <EditorDebugger onHandleFormat={this.handleFormat} onHandleSave={this.editorSave} />
             </div>
-            <div class={styles.editor} style={`height: ${this.consoleHeightType === 'up' ? '20%' : '60%'}`}>
+            <div class={styles.editor} style={`height: ${this.consoleHeightType === 'up' ? '0%' : '60%'}`}>
               {
                 this.tabData.panelsList?.length > 0 &&
                 <n-card content-style={'padding: 0;'}>
@@ -122,7 +168,7 @@ export default defineComponent({
                 </n-card>
               }
             </div>
-            <div class={styles.console} style={`height: ${this.consoleHeightType === 'up' ? '80%' : '40%'}`}>
+            <div class={styles.console} style={`height: ${this.consoleHeightType === 'up' ? '100%' : '40%'}`}>
               {
                 this.tabData.panelsList?.length > 0 &&
                 <n-card content-style={'padding: 0;'}>

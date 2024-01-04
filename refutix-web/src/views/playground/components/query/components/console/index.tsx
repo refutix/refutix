@@ -16,6 +16,7 @@ specific language governing permissions and limitations
 under the License. */
 
 import { ChevronDown, ChevronUp, TrashOutline } from '@vicons/ionicons5'
+import { KeyboardDoubleArrowUpSharp, KeyboardDoubleArrowDownSharp } from '@vicons/material'
 import styles from './index.module.scss'
 
 export default defineComponent({
@@ -57,7 +58,7 @@ export default defineComponent({
         </n-tabs>
         <div class={styles.operations}>
           <n-space>
-            <n-popover trigger="hover" placement="bottom"
+            {/*<n-popover trigger="hover" placement="bottom"
               v-slots={{
                 trigger: () => (
                   <n-button
@@ -70,7 +71,7 @@ export default defineComponent({
                 )
               }}>
               <span>{this.t('playground.clear')}</span>
-            </n-popover>
+            </n-popover>*/}
             <n-popover trigger="hover" placement="bottom"
               v-slots={{
                 trigger: () => (
@@ -78,7 +79,7 @@ export default defineComponent({
                     text
                     onClick={this.handleUp}
                     v-slots={{
-                      icon: () => <n-icon component={ChevronUp}></n-icon>
+                      icon: () => <n-icon component={KeyboardDoubleArrowUpSharp} size="20"></n-icon>
                     }}
                   >
                   </n-button>
@@ -93,7 +94,7 @@ export default defineComponent({
                     text
                     onClick={this.handleDown}
                     v-slots={{
-                      icon: () => <n-icon component={ChevronDown}></n-icon>
+                      icon: () => <n-icon component={KeyboardDoubleArrowDownSharp} size="20"></n-icon>
                     }}
                   >
                   </n-button>
