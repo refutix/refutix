@@ -65,7 +65,6 @@ export default defineComponent({
       consoleHeightType.value = type
     }
 
-
     watch(
       () => consoleHeightType.value,
       () => {
@@ -97,7 +96,7 @@ export default defineComponent({
 
         let widthInPercent = (newWidth / parentWidth) * 100;
 
-        widthInPercent = Math.max(15, Math.min(widthInPercent, 30));
+        widthInPercent = Math.max(18, Math.min(widthInPercent, 30));
 
         menuTreeWidth.value = `${widthInPercent}%`;
       }
@@ -107,22 +106,58 @@ export default defineComponent({
       isResizing.value = false;
     };
 
-    onMounted(() => {
-      document.addEventListener('mousemove', doMenuTreeResize);
-      document.addEventListener('mouseup', stopMenuTreeResize);
-    });
-
-    onBeforeUnmount(() => {
-      document.removeEventListener('mousemove', doMenuTreeResize);
-      document.removeEventListener('mouseup', stopMenuTreeResize);
-    });
-
     const editorAreaStyle = computed(() => {
       const menuWidthPercent = parseFloat(menuTreeWidth.value);
       return {
         width: `calc(100% - ${menuWidthPercent}%)`
       };
     });
+
+    const editorHeight = ref('60%'); // MonacoEditor 的初始高度百分比
+    const consoleHeight = ref('40%');
+    const isConsoleResizing = ref(false);
+
+    const startConsoleResize = (event: MouseEvent) => {
+      isConsoleResizing.value = true;
+      event.preventDefault();
+    };
+
+    const doConsoleResize = (event: MouseEvent) => {
+      if (isConsoleResizing.value && consoleHeightType.value !== 'up') {
+        const parentHeight = document.documentElement.clientHeight;
+        let newConsoleHeight = parentHeight - event.clientY;
+
+        let consoleHeightPercent = (newConsoleHeight / parentHeight) * 100;
+        consoleHeightPercent = Math.max(20, Math.min(consoleHeightPercent, 100));
+
+        editorHeight.value = `${100 - consoleHeightPercent}%`;
+        consoleHeight.value = `${consoleHeightPercent}%`;
+      }
+    };
+
+    const stopConsoleResize = () => {
+      isConsoleResizing.value = false;
+    };
+
+    onMounted(() => {
+      document.addEventListener('mousemove', doMenuTreeResize);
+      document.addEventListener('mouseup', stopMenuTreeResize);
+      document.addEventListener('mousemove', doConsoleResize);
+      document.addEventListener('mouseup', stopConsoleResize);
+    });
+
+    onBeforeUnmount(() => {
+      document.removeEventListener('mousemove', doMenuTreeResize);
+      document.removeEventListener('mouseup', stopMenuTreeResize);
+      document.removeEventListener('mousemove', doConsoleResize);
+      document.removeEventListener('mouseup', stopConsoleResize);
+    });
+
+    const showConsole = ref(false);
+    const handleConsoleClose = () => {
+      consoleHeight.value = '0%';
+      editorHeight.value = '100%';
+    };
 
     return {
       ...toRefs(editorVariables),
@@ -136,13 +171,18 @@ export default defineComponent({
       consoleHeightType,
       menuTreeWidth,
       startMenuTreeResize,
-      editorAreaStyle
+      editorAreaStyle,
+      startConsoleResize,
+      consoleHeight,
+      editorHeight,
+      handleConsoleClose,
+      showConsole
     }
   },
   render() {
     return (
       <div class={styles.query}>
-        <div class={styles['menu-tree']} style={{ width: this.menuTreeWidth }}>
+        <div style={{ width: this.menuTreeWidth }}>
           <MenuTree />
         </div>
         <div class={styles.splitter} onMousedown={this.startMenuTreeResize}></div>
@@ -154,7 +194,7 @@ export default defineComponent({
             <div class={styles.debugger}>
               <EditorDebugger onHandleFormat={this.handleFormat} onHandleSave={this.editorSave} />
             </div>
-            <div class={styles.editor} style={`height: ${this.consoleHeightType === 'up' ? '0%' : '60%'}`}>
+            <div class={styles.editor} style={{ height: this.editorHeight }}>
               {
                 this.tabData.panelsList?.length > 0 &&
                 <n-card content-style={'padding: 0;'}>
@@ -164,15 +204,17 @@ export default defineComponent({
                     onEditorMounted={this.editorMounted}
                     onEditorSave={this.editorSave}
                     onChange={this.handleContentChange}
+                    style={'height: 100%'}
                   />
                 </n-card>
               }
             </div>
-            <div class={styles.console} style={`height: ${this.consoleHeightType === 'up' ? '100%' : '40%'}`}>
+            <div class={styles['console-splitter']} onMousedown={this.startConsoleResize}></div>
+            <div class={styles.console} style={{ height: this.consoleHeight }}>
               {
                 this.tabData.panelsList?.length > 0 &&
                 <n-card content-style={'padding: 0;'}>
-                  <EditorConsole onConsoleDown={this.handleConsoleDown} onConsoleUp={this.handleConsoleUp} />
+                  <EditorConsole onConsoleDown={this.handleConsoleDown} onConsoleUp={this.handleConsoleUp} onConsoleClose={this.handleConsoleClose}/>
                 </n-card>
               }
             </div>

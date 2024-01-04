@@ -29,7 +29,7 @@ export default {
   run: '运行',
   format: '格式化',
   save: '保存',
-  clear: '清空',
+  close: '关闭',
   unfold: '展开',
   collapse: '折叠',
   logs: '日志',

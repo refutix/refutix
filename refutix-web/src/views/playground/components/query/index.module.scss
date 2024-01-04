@@ -63,7 +63,7 @@ under the License. */
   
     .editor {
       height: 60%;
-      overflow-y: scroll;
+      overflow-y: hidden;
     }
 
     .console {
@@ -73,25 +73,24 @@ under the License. */
 
     .console-splitter {
       position: relative;
-      width: 0;
-      height: 100%;
-      flex: none;
-      cursor: col-resize;
+      height: 0;
+      background: transparent;
+      cursor: ns-resize;
 
       &::after {
         content: '';
         position: absolute;
-        top: 0;
-        right: -5px;
-        bottom: 0;
-        left: -5px;
+        top: -5px;
+        right: 0;
+        bottom: -5px;
+        left: 0;
         background: transparent;
         z-index: 1;
       }
     }
 
     .console-splitter:hover::after {
-      cursor: col-resize;
+      border-top: #ccc;
     }
   }
 }
