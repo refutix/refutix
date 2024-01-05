@@ -71,7 +71,7 @@ export const editorProps = {
         readOnly: false,
         contextmenu: true,
         fontSize: 16,
-        scrollBeyondLastLine: true,
+        scrollBeyondLastLine: false,
         overviewRulerBorder: false
       }
     }
