@@ -59,7 +59,7 @@ export default defineComponent({
 
     const handleConsoleUp = (type: string) => {
       consoleHeightType.value = type
-      consoleHeight.value = '0%'
+      consoleHeight.value = '100%'
     }
 
     const handleConsoleDown = (type: string) => {
@@ -83,87 +83,87 @@ export default defineComponent({
       tabData.value = data
     })
 
-    const menuTreeWidth = ref('20%');
-    const isResizing = ref(false);
+    const menuTreeWidth = ref('20%')
+    const isResizing = ref(false)
 
     const startMenuTreeResize = (event: MouseEvent) => {
-      isResizing.value = true;
-      event.preventDefault();
-    };
+      isResizing.value = true
+      event.preventDefault()
+    }
 
     const doMenuTreeResize = (event: MouseEvent) => {
       if (isResizing.value) {
         const parentWidth = document.documentElement.clientWidth;
-        let newWidth = event.clientX;
+        let newWidth = event.clientX
 
-        let widthInPercent = (newWidth / parentWidth) * 100;
+        let widthInPercent = (newWidth / parentWidth) * 100
 
-        widthInPercent = Math.max(18, Math.min(widthInPercent, 30));
+        widthInPercent = Math.max(18, Math.min(widthInPercent, 30))
 
-        menuTreeWidth.value = `${widthInPercent}%`;
+        menuTreeWidth.value = `${widthInPercent}%`
       }
     };
 
     const stopMenuTreeResize = () => {
-      isResizing.value = false;
-    };
+      isResizing.value = false
+    }
 
     const editorAreaStyle = computed(() => {
-      const menuWidthPercent = parseFloat(menuTreeWidth.value);
+      const menuWidthPercent = parseFloat(menuTreeWidth.value)
       return {
         width: `calc(100% - ${menuWidthPercent}%)`
-      };
-    });
+      }
+    })
 
-    const consoleHeight = ref('40%');
-    const isConsoleResizing = ref(false);
+    const consoleHeight = ref('40%')
+    const isConsoleResizing = ref(false)
 
     const startConsoleResize = (event: MouseEvent) => {
-      isConsoleResizing.value = true;
-      event.preventDefault();
-    };
+      isConsoleResizing.value = true
+      event.preventDefault()
+    }
 
     const doConsoleResize = (event: MouseEvent) => {
       if (isConsoleResizing.value) {
-        const parentHeight = document.documentElement.clientHeight;
-        let newConsoleHeight = parentHeight - event.clientY;
+        const parentHeight = document.documentElement.clientHeight
+        let newConsoleHeight = parentHeight - event.clientY
 
-        let consoleHeightPercent = (newConsoleHeight / parentHeight) * 100;
-        consoleHeightPercent = Math.max(20, Math.min(consoleHeightPercent, 100));
+        let consoleHeightPercent = (newConsoleHeight / parentHeight) * 100
+        consoleHeightPercent = Math.max(20, Math.min(consoleHeightPercent, 100))
 
-        consoleHeight.value = `${consoleHeightPercent}%`;
+        consoleHeight.value = `${consoleHeightPercent}%`
       }
-    };
+    }
 
     const stopConsoleResize = () => {
-      isConsoleResizing.value = false;
-    };
+      isConsoleResizing.value = false
+    }
 
     const editorStyle = computed(() => {
-      const consoleHeightPercent = parseFloat(consoleHeight.value);
+      const consoleHeightPercent = parseFloat(consoleHeight.value)
       return {
         height: `calc(100% - ${consoleHeightPercent}%)`
-      };
-    });
+      }
+    })
 
     onMounted(() => {
-      document.addEventListener('mousemove', doMenuTreeResize);
-      document.addEventListener('mouseup', stopMenuTreeResize);
-      document.addEventListener('mousemove', doConsoleResize);
-      document.addEventListener('mouseup', stopConsoleResize);
-    });
+      document.addEventListener('mousemove', doMenuTreeResize)
+      document.addEventListener('mouseup', stopMenuTreeResize)
+      document.addEventListener('mousemove', doConsoleResize)
+      document.addEventListener('mouseup', stopConsoleResize)
+    })
 
     onBeforeUnmount(() => {
-      document.removeEventListener('mousemove', doMenuTreeResize);
-      document.removeEventListener('mouseup', stopMenuTreeResize);
-      document.removeEventListener('mousemove', doConsoleResize);
-      document.removeEventListener('mouseup', stopConsoleResize);
-    });
+      document.removeEventListener('mousemove', doMenuTreeResize)
+      document.removeEventListener('mouseup', stopMenuTreeResize)
+      document.removeEventListener('mousemove', doConsoleResize)
+      document.removeEventListener('mouseup', stopConsoleResize)
+    })
 
-    const showConsole = ref(true);
+    const showConsole = ref(true)
     const handleConsoleClose = () => {
-      consoleHeight.value = '0%'
-    };
+      consoleHeight.value = '2%'
+    }
 
     return {
       ...toRefs(editorVariables),

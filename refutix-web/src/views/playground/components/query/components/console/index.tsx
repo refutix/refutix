@@ -33,8 +33,8 @@ export default defineComponent({
     }
 
     const handleClose = () => {
-      emit('ConsoleClose');
-    };
+      emit('ConsoleClose')
+    }
 
     return {
       t,
