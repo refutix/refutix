@@ -59,10 +59,14 @@ export default defineComponent({
 
     const handleConsoleUp = (type: string) => {
       consoleHeightType.value = type
+      editorHeight.value = '100%'
+      consoleHeight.value = '0%'
     }
 
     const handleConsoleDown = (type: string) => {
       consoleHeightType.value = type
+      editorHeight.value = '60%'
+      consoleHeight.value = '40%'
     }
 
     watch(
@@ -123,7 +127,7 @@ export default defineComponent({
     };
 
     const doConsoleResize = (event: MouseEvent) => {
-      if (isConsoleResizing.value && consoleHeightType.value !== 'up') {
+      if (isConsoleResizing.value) {
         const parentHeight = document.documentElement.clientHeight;
         let newConsoleHeight = parentHeight - event.clientY;
 
