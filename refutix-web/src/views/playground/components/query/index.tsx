@@ -216,7 +216,7 @@ export default defineComponent({
                 </n-card>
               }
             </div>
-            <div class={styles['console-splitter']} onMousedown={this.startConsoleResize}></div>
+            { this.showConsole && <div class={styles['console-splitter']} onMousedown={this.startConsoleResize}></div> }
             <div class={styles.console} style={{ height: this.consoleHeight }}>
               {
                 this.showConsole && this.tabData.panelsList?.length > 0 &&
