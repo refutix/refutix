@@ -117,7 +117,7 @@ export default defineComponent({
       };
     });
 
-    const editorHeight = ref('60%'); // MonacoEditor 的初始高度百分比
+    const editorHeight = ref('60%');
     const consoleHeight = ref('40%');
     const isConsoleResizing = ref(false);
 
