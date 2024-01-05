@@ -142,7 +142,7 @@ export default defineComponent({
     const editorStyle = computed(() => {
       const consoleHeightPercent = parseFloat(consoleHeight.value)
       return {
-        height: `calc(100% - ${consoleHeightPercent}%)`
+        height: showConsole.value ? `calc(100% - ${consoleHeight.value})` : '100%'
       }
     })
 
@@ -163,6 +163,7 @@ export default defineComponent({
     const showConsole = ref(true)
     const handleConsoleClose = () => {
       consoleHeight.value = '2%'
+      showConsole.value = false
     }
 
     return {
@@ -218,7 +219,7 @@ export default defineComponent({
             <div class={styles['console-splitter']} onMousedown={this.startConsoleResize}></div>
             <div class={styles.console} style={{ height: this.consoleHeight }}>
               {
-                this.tabData.panelsList?.length > 0 &&
+                this.showConsole && this.tabData.panelsList?.length > 0 &&
                 <n-card content-style={'padding: 0;'}>
                   <EditorConsole onConsoleDown={this.handleConsoleDown} onConsoleUp={this.handleConsoleUp} onConsoleClose={this.handleConsoleClose}/>
                 </n-card>
