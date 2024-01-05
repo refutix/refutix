@@ -157,6 +157,9 @@ export default defineComponent({
     const handleConsoleClose = () => {
       consoleHeight.value = '0%';
       editorHeight.value = '100%';
+      if (editorVariables.editor) {
+        editorVariables.editor?.layout()
+      }
     };
 
     return {
