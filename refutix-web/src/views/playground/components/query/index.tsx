@@ -59,13 +59,11 @@ export default defineComponent({
 
     const handleConsoleUp = (type: string) => {
       consoleHeightType.value = type
-      editorHeight.value = '100%'
       consoleHeight.value = '0%'
     }
 
     const handleConsoleDown = (type: string) => {
       consoleHeightType.value = type
-      editorHeight.value = '60%'
       consoleHeight.value = '40%'
     }
 
@@ -117,7 +115,6 @@ export default defineComponent({
       };
     });
 
-    const editorHeight = ref('60%');
     const consoleHeight = ref('40%');
     const isConsoleResizing = ref(false);
 
@@ -134,7 +131,6 @@ export default defineComponent({
         let consoleHeightPercent = (newConsoleHeight / parentHeight) * 100;
         consoleHeightPercent = Math.max(20, Math.min(consoleHeightPercent, 100));
 
-        editorHeight.value = `${100 - consoleHeightPercent}%`;
         consoleHeight.value = `${consoleHeightPercent}%`;
       }
     };
@@ -142,6 +138,13 @@ export default defineComponent({
     const stopConsoleResize = () => {
       isConsoleResizing.value = false;
     };
+
+    const editorStyle = computed(() => {
+      const consoleHeightPercent = parseFloat(consoleHeight.value);
+      return {
+        height: `calc(100% - ${consoleHeightPercent}%)`
+      };
+    });
 
     onMounted(() => {
       document.addEventListener('mousemove', doMenuTreeResize);
@@ -157,10 +160,9 @@ export default defineComponent({
       document.removeEventListener('mouseup', stopConsoleResize);
     });
 
-    const showConsole = ref(false);
+    const showConsole = ref(true);
     const handleConsoleClose = () => {
-      consoleHeight.value = '0%';
-      editorHeight.value = '100%';
+      consoleHeight.value = '0%'
     };
 
     return {
@@ -178,7 +180,7 @@ export default defineComponent({
       editorAreaStyle,
       startConsoleResize,
       consoleHeight,
-      editorHeight,
+      editorStyle,
       handleConsoleClose,
       showConsole
     }
@@ -198,7 +200,7 @@ export default defineComponent({
             <div class={styles.debugger}>
               <EditorDebugger onHandleFormat={this.handleFormat} onHandleSave={this.editorSave} />
             </div>
-            <div class={styles.editor} style={{ height: this.editorHeight }}>
+            <div class={styles.editor} style={this.editorStyle}>
               {
                 this.tabData.panelsList?.length > 0 &&
                 <n-card content-style={'padding: 0;'}>
