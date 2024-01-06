@@ -58,7 +58,7 @@ under the License. */
   
     .debugger {
       display: flex;
-      height: 64px;
+      height: 54px;
     }
   
     .editor {
@@ -85,10 +85,6 @@ under the License. */
         background: transparent;
         z-index: 1;
       }
-    }
-
-    .console-splitter:hover::after {
-      border-top: #ccc;
     }
   }
 }

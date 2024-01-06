@@ -67,14 +67,16 @@ export default defineComponent({
       consoleHeight.value = '40%'
     }
 
-    watch(
+    // Opening this comment and folding the console upward will cause the page to freeze. The reason has not yet been found.
+    // Because automaticLayout has been turned on, I think this is unnecessary.
+   /* watch(
       () => consoleHeightType.value,
       () => {
         if (tabData.value.panelsList?.length > 0) {
           editorVariables.editor?.layout()
         }
       }
-    )
+    )*/
 
     // mitt - handle tab choose
     const tabData = ref({}) as any
@@ -139,8 +141,12 @@ export default defineComponent({
       isConsoleResizing.value = false
     }
 
+    const showConsole = ref(true)
+    const handleConsoleClose = () => {
+      showConsole.value = false
+    }
+
     const editorStyle = computed(() => {
-      const consoleHeightPercent = parseFloat(consoleHeight.value)
       return {
         height: showConsole.value ? `calc(100% - ${consoleHeight.value})` : '100%'
       }
@@ -159,12 +165,6 @@ export default defineComponent({
       document.removeEventListener('mousemove', doConsoleResize)
       document.removeEventListener('mouseup', stopConsoleResize)
     })
-
-    const showConsole = ref(true)
-    const handleConsoleClose = () => {
-      consoleHeight.value = '2%'
-      showConsole.value = false
-    }
 
     return {
       ...toRefs(editorVariables),
@@ -201,29 +201,32 @@ export default defineComponent({
             <div class={styles.debugger}>
               <EditorDebugger onHandleFormat={this.handleFormat} onHandleSave={this.editorSave} />
             </div>
-            <div class={styles.editor} style={this.editorStyle}>
-              {
-                this.tabData.panelsList?.length > 0 &&
-                <n-card content-style={'padding: 0;'}>
-                  <MonacoEditor
-                    v-model={this.tabData.panelsList.find((item: any) => item.key === this.tabData.chooseTab).content}
-                    language={this.language}
-                    onEditorMounted={this.editorMounted}
-                    onEditorSave={this.editorSave}
-                    onChange={this.handleContentChange}
-                    style={'height: 100%'}
-                  />
-                </n-card>
-              }
-            </div>
-            { this.showConsole && <div class={styles['console-splitter']} onMousedown={this.startConsoleResize}></div> }
-            <div class={styles.console} style={{ height: this.consoleHeight }}>
-              {
-                this.showConsole && this.tabData.panelsList?.length > 0 &&
-                <n-card content-style={'padding: 0;'}>
-                  <EditorConsole onConsoleDown={this.handleConsoleDown} onConsoleUp={this.handleConsoleUp} onConsoleClose={this.handleConsoleClose}/>
-                </n-card>
-              }
+            <div style={{ display: 'flex', flex: 1, flexDirection: 'column'}}>
+              <div class={styles.editor} style={this.editorStyle}>
+                {
+                  this.tabData.panelsList?.length > 0 &&
+                    <n-card content-style={'height: 100%;padding: 0;'}>
+                        <MonacoEditor
+                            v-model={this.tabData.panelsList.find((item: any) => item.key === this.tabData.chooseTab).content}
+                            language={this.language}
+                            onEditorMounted={this.editorMounted}
+                            onEditorSave={this.editorSave}
+                            onChange={this.handleContentChange}
+                        />
+                    </n-card>
+                }
+              </div>
+              { this.showConsole && <div class={styles['console-splitter']} onMousedown={this.startConsoleResize}></div> }
+              { this.showConsole && (
+                <div class={styles.console} style={{ height: this.consoleHeight }}>
+                  {
+                    this.tabData.panelsList?.length > 0 &&
+                      <n-card content-style={'padding: 0;'}>
+                          <EditorConsole onConsoleDown={this.handleConsoleDown} onConsoleUp={this.handleConsoleUp} onConsoleClose={this.handleConsoleClose}/>
+                      </n-card>
+                  }
+                </div>
+              )}
             </div>
           </n-card>
         </div>
