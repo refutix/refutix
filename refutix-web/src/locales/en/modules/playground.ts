@@ -29,7 +29,7 @@ export default {
   run: 'Run',
   format: 'Format',
   save: 'Save',
-  clear: 'Clear',
+  close: 'Close',
   unfold: 'Unfold',
   collapse: 'Collapse',
   logs: 'Logs',

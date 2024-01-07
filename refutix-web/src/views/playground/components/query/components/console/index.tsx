@@ -15,12 +15,13 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License. */
 
-import { ChevronDown, ChevronUp, TrashOutline } from '@vicons/ionicons5'
+import { KeyboardDoubleArrowUpSharp, KeyboardDoubleArrowDownSharp, CloseSharp } from '@vicons/material'
+import Result from './components/result'
 import styles from './index.module.scss'
 
 export default defineComponent({
   name: 'EditorConsole',
-  emits: ['ConsoleUp', 'ConsoleDown'],
+  emits: ['ConsoleUp', 'ConsoleDown', 'ConsoleClose'],
   setup(props, { emit }) {
     const { t } = useLocaleHooks()
 
@@ -32,10 +33,15 @@ export default defineComponent({
       emit('ConsoleDown', 'down')
     }
 
+    const handleClose = () => {
+      emit('ConsoleClose')
+    }
+
     return {
       t,
       handleUp,
-      handleDown
+      handleDown,
+      handleClose
     }
   },
   render() {
@@ -52,7 +58,7 @@ export default defineComponent({
             {this.t('playground.logs')}
           </n-tab-pane>
           <n-tab-pane name="result" tab={this.t('playground.result')}>
-            {this.t('playground.result')}
+            <Result/>
           </n-tab-pane>
         </n-tabs>
         <div class={styles.operations}>
@@ -62,23 +68,9 @@ export default defineComponent({
                 trigger: () => (
                   <n-button
                     text
-                    v-slots={{
-                      icon: () => <n-icon component={TrashOutline}></n-icon>
-                    }}
-                  >
-                  </n-button>
-                )
-              }}>
-              <span>{this.t('playground.clear')}</span>
-            </n-popover>
-            <n-popover trigger="hover" placement="bottom"
-              v-slots={{
-                trigger: () => (
-                  <n-button
-                    text
                     onClick={this.handleUp}
                     v-slots={{
-                      icon: () => <n-icon component={ChevronUp}></n-icon>
+                      icon: () => <n-icon component={KeyboardDoubleArrowUpSharp} size="20"></n-icon>
                     }}
                   >
                   </n-button>
@@ -93,7 +85,7 @@ export default defineComponent({
                     text
                     onClick={this.handleDown}
                     v-slots={{
-                      icon: () => <n-icon component={ChevronDown}></n-icon>
+                      icon: () => <n-icon component={KeyboardDoubleArrowDownSharp} size="20"></n-icon>
                     }}
                   >
                   </n-button>
@@ -101,6 +93,21 @@ export default defineComponent({
               }}>
               <span>{this.t('playground.collapse')}</span>
             </n-popover>
+            <n-popover trigger="hover" placement="bottom"
+               v-slots={{
+                   trigger: () => (
+                       <n-button
+                           text
+                           onClick={this.handleClose}
+                           v-slots={{
+                               icon: () => <n-icon component={CloseSharp} size="19"></n-icon>
+                           }}
+                       >
+                       </n-button>
+                   )
+               }}>
+              <span>{this.t('playground.close')}</span>
+          </n-popover>
           </n-space>
         </div>
       </div>   

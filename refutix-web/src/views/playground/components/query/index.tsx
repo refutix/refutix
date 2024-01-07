@@ -59,27 +59,111 @@ export default defineComponent({
 
     const handleConsoleUp = (type: string) => {
       consoleHeightType.value = type
+      consoleHeight.value = '100%'
     }
 
     const handleConsoleDown = (type: string) => {
       consoleHeightType.value = type
+      consoleHeight.value = '40%'
     }
 
-
-    watch(
+    // Opening this comment and folding the console upward will cause the page to freeze. The reason has not yet been found.
+    // Because automaticLayout has been turned on, I think this is unnecessary.
+   /* watch(
       () => consoleHeightType.value,
       () => {
         if (tabData.value.panelsList?.length > 0) {
           editorVariables.editor?.layout()
         }
       }
-    )
+    )*/
 
     // mitt - handle tab choose
     const tabData = ref({}) as any
     const { mittBus }  = getCurrentInstance()!.appContext.config.globalProperties
     mittBus.on('initTabData', (data: any) => {
       tabData.value = data
+    })
+
+    const menuTreeWidth = ref('20%')
+    const isResizing = ref(false)
+
+    const startMenuTreeResize = (event: MouseEvent) => {
+      isResizing.value = true
+      event.preventDefault()
+    }
+
+    const doMenuTreeResize = (event: MouseEvent) => {
+      if (isResizing.value) {
+        const parentWidth = document.documentElement.clientWidth;
+        let newWidth = event.clientX
+
+        let widthInPercent = (newWidth / parentWidth) * 100
+
+        widthInPercent = Math.max(18, Math.min(widthInPercent, 30))
+
+        menuTreeWidth.value = `${widthInPercent}%`
+      }
+    };
+
+    const stopMenuTreeResize = () => {
+      isResizing.value = false
+    }
+
+    const editorAreaStyle = computed(() => {
+      const menuWidthPercent = parseFloat(menuTreeWidth.value)
+      return {
+        width: `calc(100% - ${menuWidthPercent}%)`
+      }
+    })
+
+    const consoleHeight = ref('40%')
+    const isConsoleResizing = ref(false)
+
+    const startConsoleResize = (event: MouseEvent) => {
+      isConsoleResizing.value = true
+      event.preventDefault()
+    }
+
+    const doConsoleResize = (event: MouseEvent) => {
+      if (isConsoleResizing.value) {
+        const parentHeight = document.documentElement.clientHeight
+        let newConsoleHeight = parentHeight - event.clientY
+
+        let consoleHeightPercent = (newConsoleHeight / parentHeight) * 100
+        consoleHeightPercent = Math.max(20, Math.min(consoleHeightPercent, 100))
+
+        consoleHeight.value = `${consoleHeightPercent}%`
+      }
+    }
+
+    const stopConsoleResize = () => {
+      isConsoleResizing.value = false
+    }
+
+    const showConsole = ref(true)
+    const handleConsoleClose = () => {
+      showConsole.value = false
+    }
+
+    const editorStyle = computed(() => {
+      return {
+        height: showConsole.value ? `calc(100% - ${consoleHeight.value})` : '100%'
+      }
+    })
+
+    onMounted(() => {
+      document.addEventListener('mousemove', doMenuTreeResize)
+      document.addEventListener('mouseup', stopMenuTreeResize)
+      document.addEventListener('mousemove', doConsoleResize)
+      document.addEventListener('mouseup', stopConsoleResize)
+    })
+
+    onBeforeUnmount(() => {
+      document.removeEventListener('mousemove', doMenuTreeResize)
+      document.removeEventListener('mouseup', stopMenuTreeResize)
+      document.removeEventListener('mousemove', doConsoleResize)
+      document.removeEventListener('mouseup', stopConsoleResize)
     })
 
     return {
@@ -91,16 +175,25 @@ export default defineComponent({
       tabData,
       handleConsoleUp,
       handleConsoleDown,
-      consoleHeightType
+      consoleHeightType,
+      menuTreeWidth,
+      startMenuTreeResize,
+      editorAreaStyle,
+      startConsoleResize,
+      consoleHeight,
+      editorStyle,
+      handleConsoleClose,
+      showConsole
     }
   },
   render() {
     return (
       <div class={styles.query}>
-        <div class={styles['menu-tree']}>
+        <div style={{ width: this.menuTreeWidth }}>
           <MenuTree />
         </div>
-        <div class={styles['editor-area']}>
+        <div class={styles.splitter} onMousedown={this.startMenuTreeResize}></div>
+        <div class={styles['editor-area']} style={this.editorAreaStyle}>
           <n-card class={styles.card} content-style={'padding: 5px 18px;display: flex;flex-direction: column;'}>
             <div class={styles.tabs}>
               <EditorTabs />
@@ -108,27 +201,32 @@ export default defineComponent({
             <div class={styles.debugger}>
               <EditorDebugger onHandleFormat={this.handleFormat} onHandleSave={this.editorSave} />
             </div>
-            <div class={styles.editor} style={`height: ${this.consoleHeightType === 'up' ? '20%' : '60%'}`}>
-              {
-                this.tabData.panelsList?.length > 0 &&
-                <n-card content-style={'padding: 0;'}>
-                  <MonacoEditor
-                    v-model={this.tabData.panelsList.find((item: any) => item.key === this.tabData.chooseTab).content}
-                    language={this.language}
-                    onEditorMounted={this.editorMounted}
-                    onEditorSave={this.editorSave}
-                    onChange={this.handleContentChange}
-                  />
-                </n-card>
-              }
-            </div>
-            <div class={styles.console} style={`height: ${this.consoleHeightType === 'up' ? '80%' : '40%'}`}>
-              {
-                this.tabData.panelsList?.length > 0 &&
-                <n-card content-style={'padding: 0;'}>
-                  <EditorConsole onConsoleDown={this.handleConsoleDown} onConsoleUp={this.handleConsoleUp} />
-                </n-card>
-              }
+            <div style={{ display: 'flex', flex: 1, flexDirection: 'column'}}>
+              <div class={styles.editor} style={this.editorStyle}>
+                {
+                  this.tabData.panelsList?.length > 0 &&
+                    <n-card content-style={'height: 100%;padding: 0;'}>
+                        <MonacoEditor
+                            v-model={this.tabData.panelsList.find((item: any) => item.key === this.tabData.chooseTab).content}
+                            language={this.language}
+                            onEditorMounted={this.editorMounted}
+                            onEditorSave={this.editorSave}
+                            onChange={this.handleContentChange}
+                        />
+                    </n-card>
+                }
+              </div>
+              { this.showConsole && <div class={styles['console-splitter']} onMousedown={this.startConsoleResize}></div> }
+              { this.showConsole && (
+                <div class={styles.console} style={{ height: this.consoleHeight }}>
+                  {
+                    this.tabData.panelsList?.length > 0 &&
+                      <n-card content-style={'padding: 0;'}>
+                          <EditorConsole onConsoleDown={this.handleConsoleDown} onConsoleUp={this.handleConsoleUp} onConsoleClose={this.handleConsoleClose}/>
+                      </n-card>
+                  }
+                </div>
+              )}
             </div>
           </n-card>
         </div>

@@ -15,30 +15,18 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License. */
 
-.container {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  min-height: 43px;
-}
+import styles from './index.module.scss'
 
-.tabs {
-  display: flex;
-  align-items: center;
+export default defineComponent({
+  name: 'Result',
+  setup() {
 
-  .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #33994A;
-    margin-right: 8px;
+  },
+  render() {
+    return (
+      <div class={styles.result}>
+        result
+      </div>
+    )
   }
-
-  .asterisk {
-    color: #C82E2E;
-    padding-left: 10px;
-  }
-
-}
-
+})
