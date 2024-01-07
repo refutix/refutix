@@ -16,6 +16,7 @@ specific language governing permissions and limitations
 under the License. */
 
 import { KeyboardDoubleArrowUpSharp, KeyboardDoubleArrowDownSharp, CloseSharp } from '@vicons/material'
+import Result from './components/result'
 import styles from './index.module.scss'
 
 export default defineComponent({
@@ -57,7 +58,7 @@ export default defineComponent({
             {this.t('playground.logs')}
           </n-tab-pane>
           <n-tab-pane name="result" tab={this.t('playground.result')}>
-            {this.t('playground.result')}
+            <Result/>
           </n-tab-pane>
         </n-tabs>
         <div class={styles.operations}>
@@ -99,7 +100,7 @@ export default defineComponent({
                            text
                            onClick={this.handleClose}
                            v-slots={{
-                               icon: () => <n-icon component={CloseSharp} size="18.5"></n-icon>
+                               icon: () => <n-icon component={CloseSharp} size="19"></n-icon>
                            }}
                        >
                        </n-button>
